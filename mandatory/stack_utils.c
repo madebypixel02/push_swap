@@ -6,7 +6,7 @@
 /*   By: aperez-b <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 16:26:30 by aperez-b          #+#    #+#             */
-/*   Updated: 2021/08/29 18:35:52 by aperez-b         ###   ########.fr       */
+/*   Updated: 2021/08/29 20:13:26 by aperez-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_stack	*st_printstack(t_stack *stack)
 		stack = stack->next;
 	}
 	else
-		ft_putchar_fd('-', 1);
+		ft_putchar_fd('*', 1);
 	return (stack);
 }
 
@@ -39,7 +39,7 @@ int	st_printstack_ab(t_stack *a, t_stack *b)
 		b = st_printstack(b);
 		ft_putchar_fd('\n', 1);
 	}
-	ft_putchar_fd('\n', 1);
+	ft_putstr_fd("-\t-\na\tb\n\n\n", 1);
 	return (0);
 }
 
