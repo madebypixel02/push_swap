@@ -6,7 +6,7 @@
 /*   By: aperez-b <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 09:58:17 by aperez-b          #+#    #+#             */
-/*   Updated: 2021/08/29 14:24:10 by aperez-b         ###   ########.fr       */
+/*   Updated: 2021/08/29 18:33:00 by aperez-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,21 @@
 void	*st_pop(t_stack **stack)
 {
 	void	*out;
-	t_stack	*temp;
 
-	temp = *stack;
-	if (!temp)
+	if (!stack[0])
 		return (NULL);
-	out = temp->content;
-	if (temp->next)
-		temp = temp->next;
-	temp->prev = NULL;
-	free(*stack);
-	*stack = temp;
+	out = stack[0]->content;
+	if (stack[0]->next)
+	{
+		stack[0] = stack[0]->next;
+		free(stack[0]->prev);
+		stack[0]->prev = NULL;
+	}
+	else
+	{
+		free(stack[0]);
+		stack[0] = NULL;
+	}
 	return (out);
 }
 
@@ -64,44 +68,23 @@ t_stack	*st_newstack(void *newcontent, size_t size)
 	return (new);
 }
 
-void	st_free(t_stack *stack)
+void	st_freestack(t_stack **stack)
 {
 	t_stack	*temp;
 
 	temp = NULL;
-	if (stack)
+	if (*stack)
 	{
-		while (stack->prev)
-			stack = stack->prev;
-		while (stack)
+		while (stack[0]->prev)
+			stack[0] = stack[0]->prev;
+		while (*stack)
 		{
-			temp = stack;
-			stack = stack->next;
+			temp = *stack;
+			stack[0] = stack[0]->next;
 			free(temp->content);
 			free(temp);
 			temp = NULL;
 		}
 	}
-}
-
-int	st_print(t_stack *stack)
-{
-	t_stack	*temp;
-
-	if (!stack)
-	{
-		ft_putstr_fd("Empty or Missing Stack supplied!\n", 1);
-		return (0);
-	}
-	temp = stack;
-	while (temp->prev)
-		temp = temp->prev;
-	while (temp)
-	{
-		ft_putnbr_fd(*(int *)temp->content, 1);
-		write(1, "\n", 1);
-		temp = temp->next;
-	}
-	write(1, "\n", 1);
-	return (0);
+	*stack = NULL;
 }

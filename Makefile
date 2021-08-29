@@ -6,7 +6,7 @@
 #    By: aperez-b <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/29 10:50:06 by aperez-b          #+#    #+#              #
-#    Updated: 2021/08/29 15:13:27 by aperez-b         ###   ########.fr        #
+#    Updated: 2021/08/29 20:00:28 by aperez-b         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ ifeq ($(UNAME), Linux)
 endif
 
 # Make variables
-CFLAGS = #-Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
 RM = rm -f
 CC = gcc
 DIR_M = mandatory
@@ -45,7 +45,7 @@ NAME = push_swap
 INC = #-I libft/lib/
 LIB = #-L libft/
 
-SOURCE_M = stack.c
+SOURCE_M = stack.c stack_utils.c stack_transform.c stack_multi.c
 
 SOURCE_B = 
 

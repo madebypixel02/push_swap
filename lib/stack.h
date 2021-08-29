@@ -6,7 +6,7 @@
 /*   By: aperez-b <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 09:58:49 by aperez-b          #+#    #+#             */
-/*   Updated: 2021/08/29 14:40:54 by aperez-b         ###   ########.fr       */
+/*   Updated: 2021/08/29 20:00:07 by aperez-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,37 @@ int		st_push(t_stack **stack, void *newcontent, size_t size);
 /* Allocates memory for new stack node */
 t_stack	*st_newstack(void *newcontent, size_t size);
 
-/* Checks content at the top without modifying it */
-void	*st_peek(t_stack *stack);
+/* Prints stack from current node and tries to move to the next one */
+t_stack	*st_printstack(t_stack *stack);
 
-/* Prints stack from current node */
-int		st_print(t_stack *stack);
+/* Prints both stacks side-by-side */
+int		st_printstack_ab(t_stack *a, t_stack *b);
 
 /* Frees allocated memory for a stack */
-void	st_free(t_stack *stack);
+void	st_freestack(t_stack **stack);
+
+/* Returns number of elements in stack */
+int		st_stacklen(t_stack *stack);
+
+/* Swaps first two elements of a stack if needed */
+void	st_swap_ab(t_stack **stack);
+
+/* Performs st_swap_ab on both a and b */
+void	st_swap_ss(t_stack **a, t_stack **b);
+
+/* Move top of second stack to top of first stack */
+void	st_push_ab(t_stack **a, t_stack **b);
+
+/* Performs st_rotate_ab on both a and b */
+int		st_rotate_rr(t_stack **a, t_stack **b);
+
+/* Moves every element one position up */
+int		st_rotate_ab(t_stack **stack);
+
+/* Moves every element one position down */
+int		st_rrotate_ab(t_stack **stack);
+
+/* Performs st_rrotate_ab on both a and b */
+int		st_rrotate_rrr(t_stack **a, t_stack **b);
 
 #endif
