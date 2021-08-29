@@ -6,7 +6,7 @@
 /*   By: aperez-b <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 16:26:30 by aperez-b          #+#    #+#             */
-/*   Updated: 2021/08/29 20:13:26 by aperez-b         ###   ########.fr       */
+/*   Updated: 2021/08/29 20:16:21 by aperez-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_stack	*st_printstack(t_stack *stack)
 		stack = stack->next;
 	}
 	else
-		ft_putchar_fd('*', 1);
+		ft_putchar_fd('.', 1);
 	return (stack);
 }
 
