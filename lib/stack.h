@@ -6,7 +6,7 @@
 /*   By: aperez-b <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 09:58:49 by aperez-b          #+#    #+#             */
-/*   Updated: 2021/08/29 20:00:07 by aperez-b         ###   ########.fr       */
+/*   Updated: 2021/08/29 22:17:02 by aperez-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,8 @@ int		st_rrotate_ab(t_stack **stack);
 
 /* Performs st_rrotate_ab on both a and b */
 int		st_rrotate_rrr(t_stack **a, t_stack **b);
+
+/* Returns 1 if the content matches the content at the given node */
+int		st_in_stack(t_stack *stack, void *content, size_t size);
 
 #endif

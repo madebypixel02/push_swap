@@ -6,7 +6,7 @@
 #    By: aperez-b <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/29 10:50:06 by aperez-b          #+#    #+#              #
-#    Updated: 2021/08/29 20:00:28 by aperez-b         ###   ########.fr        #
+#    Updated: 2021/08/29 20:34:12 by aperez-b         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -82,9 +82,9 @@ compile_libft:
 test: all
 	@$(ECHO) "$(YELLOW)Performing test with custom main...$(DEFAULT)"
 	@$(ECHO)
-	@$(ECHO) "Command: $(GRAY)$(LEAKS)./$(NAME)$(DEFAULT)"
+	@$(ECHO) "Command: $(GRAY)$(LEAKS)./$(NAME) $(N)$(DEFAULT)"
 	@$(ECHO)
-	@$(LEAKS)./$(NAME)
+	@$(LEAKS)./$(NAME) $(N)
 
 clean:
 	@$(ECHO) "$(BLUE)Cleaning up object files in $(NAME)...$(DEFAULT)"
