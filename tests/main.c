@@ -6,7 +6,7 @@
 /*   By: aperez-b <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 10:45:14 by aperez-b          #+#    #+#             */
-/*   Updated: 2021/08/29 13:55:34 by aperez-b         ###   ########.fr       */
+/*   Updated: 2021/08/29 14:57:05 by aperez-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,5 @@ int	main(void)
 	free(st_pop(&test));
 	st_print(test);
 	st_free(test);
+	return (0);
 }
