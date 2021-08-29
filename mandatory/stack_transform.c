@@ -6,7 +6,7 @@
 /*   By: aperez-b <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 16:30:04 by aperez-b          #+#    #+#             */
-/*   Updated: 2021/08/29 20:00:07 by aperez-b         ###   ########.fr       */
+/*   Updated: 2021/08/29 22:53:10 by aperez-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,12 @@ int	st_rotate_ab(t_stack **stack)
 		content = st_pop(stack);
 		new = st_newstack(content, sizeof(int));
 		if (!new)
-			return (0);
+			return (-1);
 		free(content);
 		temp->next = new;
 		new->prev = temp;
 	}
-	return (1);
+	return (0);
 }
 
 int	st_rrotate_ab(t_stack **stack)
@@ -81,7 +81,7 @@ int	st_rrotate_ab(t_stack **stack)
 	t_stack	*temp;
 
 	if (!stack[0])
-		return (0);
+		return (-1);
 	temp = *stack;
 	if (st_stacklen(temp) > 1)
 	{
@@ -94,5 +94,5 @@ int	st_rrotate_ab(t_stack **stack)
 		st_push(stack, content, sizeof(int));
 		free(content);
 	}
-	return (1);
+	return (0);
 }
