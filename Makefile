@@ -6,7 +6,7 @@
 #    By: aperez-b <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/29 10:50:06 by aperez-b          #+#    #+#              #
-#    Updated: 2021/08/31 16:58:55 by aperez-b         ###   ########.fr        #
+#    Updated: 2021/08/31 17:01:46 by aperez-b         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -92,7 +92,7 @@ test: all
 	@if [ $(N) -le 0 ]; then \
 		$(ECHO) "Error"; \
 	else \
-		$(ECHO) "$(YELLOW)Performing test with custom main...$(DEFAULT)"; \
+		$(ECHO) "$(YELLOW)Performing test with custom parameters...$(DEFAULT)"; \
 		$(ECHO); \
 		$(ECHO) "Command: $(GRAY)$(LEAKS)./$(NAME) $(ARGS_BAK)$(DEFAULT)"; \
 		$(ECHO); \
