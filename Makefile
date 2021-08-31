@@ -6,7 +6,7 @@
 #    By: aperez-b <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/29 10:50:06 by aperez-b          #+#    #+#              #
-#    Updated: 2021/08/29 20:34:12 by aperez-b         ###   ########.fr        #
+#    Updated: 2021/08/31 16:39:07 by aperez-b         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,6 +57,14 @@ OBJ_M = $(addprefix $(DIR_OBJ)/, $(SOURCE_M:.c=.o)) lib/main.o
 
 OBJ_B = $(addprefix $(DIR_OBJ)/, $(SOURCE_B:.c=.o))
 
+# push_swap test variables
+N = 0
+N_VALID = $(shell [ $(N) -gt 0 ] && echo True)
+
+ifeq ($(N_VALID), True)
+	ARGS = $(shell seq -$(N) $(N) | sort -R | head -n $(N) | tr '\n' ' ')
+endif
+
 all: $(NAME)
 
 $(NAME): $(OBJ_M) compile_libft
@@ -80,11 +88,15 @@ compile_libft:
 	@make all -C libft/
 
 test: all
-	@$(ECHO) "$(YELLOW)Performing test with custom main...$(DEFAULT)"
-	@$(ECHO)
-	@$(ECHO) "Command: $(GRAY)$(LEAKS)./$(NAME) $(N)$(DEFAULT)"
-	@$(ECHO)
-	@$(LEAKS)./$(NAME) $(N)
+	@if [ $(N) -le 0 ]; then \
+		$(ECHO) "Error"; \
+	else \
+		$(ECHO) "$(YELLOW)Performing test with custom main...$(DEFAULT)"; \
+		$(ECHO); \
+		$(ECHO) "Command: $(GRAY)$(LEAKS)./$(NAME) $(ARGS)$(DEFAULT)"; \
+		$(ECHO); \
+		$(LEAKS)./$(NAME) $(ARGS); \
+	fi
 
 clean:
 	@$(ECHO) "$(BLUE)Cleaning up object files in $(NAME)...$(DEFAULT)"
