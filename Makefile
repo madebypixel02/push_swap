@@ -6,7 +6,7 @@
 #    By: aperez-b <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/29 10:50:06 by aperez-b          #+#    #+#              #
-#    Updated: 2021/08/31 16:39:07 by aperez-b         ###   ########.fr        #
+#    Updated: 2021/08/31 16:58:55 by aperez-b         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,8 +62,9 @@ N = 0
 N_VALID = $(shell [ $(N) -gt 0 ] && echo True)
 
 ifeq ($(N_VALID), True)
-	ARGS = $(shell seq -$(N) $(N) | sort -R | head -n $(N) | tr '\n' ' ')
+	ARGS := $(shell seq -$(N) $(N) | sort -R | head -n $(N) | tr '\n' ' ')
 endif
+ARGS_BAK = $(ARGS)
 
 all: $(NAME)
 
@@ -93,9 +94,9 @@ test: all
 	else \
 		$(ECHO) "$(YELLOW)Performing test with custom main...$(DEFAULT)"; \
 		$(ECHO); \
-		$(ECHO) "Command: $(GRAY)$(LEAKS)./$(NAME) $(ARGS)$(DEFAULT)"; \
+		$(ECHO) "Command: $(GRAY)$(LEAKS)./$(NAME) $(ARGS_BAK)$(DEFAULT)"; \
 		$(ECHO); \
-		$(LEAKS)./$(NAME) $(ARGS); \
+		$(LEAKS)./$(NAME) $(ARGS_BAK); \
 	fi
 
 clean:
