@@ -6,11 +6,11 @@
 /*   By: aperez-b <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 10:45:14 by aperez-b          #+#    #+#             */
-/*   Updated: 2021/08/29 22:37:16 by aperez-b         ###   ########.fr       */
+/*   Updated: 2021/09/01 13:55:08 by aperez-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/stack.h"
+#include "../lib/push_swap.h"
 
 static t_stack	*st_parse(int argc, char **argv)
 {
@@ -50,11 +50,11 @@ int	main(int argc, char **argv)
 	if (!a)
 		return (0);
 	st_printstack_ab(a, b);
-	while (st_stacklen(a))
-	{
-		st_push_ab(&b, &a);
-		st_printstack_ab(a, b);
-	}
+	ft_putstr_fd("Stack ordered: ", 1);
+	ft_putnbr_fd(st_is_ordered(a), 1);
+	ft_putstr_fd("\n\n", 1);
+	st_order(a, b);
+	st_printstack_ab(a, b);
 	st_freestack(&a);
 	st_freestack(&b);
 	return (0);

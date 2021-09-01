@@ -6,49 +6,12 @@
 /*   By: aperez-b <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 16:26:30 by aperez-b          #+#    #+#             */
-/*   Updated: 2021/08/29 22:16:05 by aperez-b         ###   ########.fr       */
+/*   Updated: 2021/09/01 12:49:25 by aperez-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lib/stack.h"
-#include <stddef.h>
 
-t_stack	*st_printstack(t_stack *stack)
-{
-	if (stack)
-	{
-		ft_putnbr_fd(*(int *)stack->content, 1);
-		if (ft_nbrlen(*(int *)stack->content, 10) > 7)
-			ft_putnchar_fd('\t', 1, 1);
-		else
-			ft_putnchar_fd('\t', 1, 2);
-		stack = stack->next;
-	}
-	else
-	{
-		ft_putchar_fd('.', 1);
-		ft_putnchar_fd('\t', 1, 2);
-	}
-	return (stack);
-}
-
-int	st_printstack_ab(t_stack *a, t_stack *b)
-{
-	if (!a && !b)
-		return (ft_putstr_fd("Error\n", 2));
-	while (a && a->prev)
-		a = a->prev;
-	while (b && b->prev)
-		b = b->prev;
-	while (a || b)
-	{
-		a = st_printstack(a);
-		b = st_printstack(b);
-		ft_putchar_fd('\n', 1);
-	}
-	ft_putstr_fd("-\t\t-\na\t\tb\n\n\n", 1);
-	return (0);
-}
 
 int	st_stacklen(t_stack *stack)
 {
@@ -80,4 +43,59 @@ int	st_in_stack(t_stack *stack, void *content, size_t size)
 		stack = stack->next;
 	}
 	return (0);
+}
+
+int	st_is_ordered(t_stack *stack)
+{
+	void	*prev;
+
+	prev = NULL;
+	if (!stack)
+		return (0);
+	while (stack->prev)
+		stack = stack->prev;
+	while (stack)
+	{
+		if (prev && *(int *)prev > *(int *)stack->content)
+			return (0);
+		prev = stack->content;
+		stack = stack->next;
+	}
+	return (1);
+}
+
+void	*st_min(t_stack *stack)
+{
+	void	*min;
+
+	min = NULL;
+	if (!stack)
+		return (min);
+	while (stack->prev)
+		stack = stack->prev;
+	while (stack)
+	{
+		if (!min || *(int *)min > *(int *)stack->content)
+			min = stack->content;
+		stack = stack->next;
+	}
+	return (min);
+}
+
+void	*st_max(t_stack *stack)
+{
+	void	*max;
+
+	max = NULL;
+	if (!stack)
+		return (max);
+	while (stack->prev)
+		stack = stack->prev;
+	while (stack)
+	{
+		if (!max || *(int *)max < *(int *)stack->content)
+			max = stack->content;
+		stack = stack->next;
+	}
+	return (max);
 }
