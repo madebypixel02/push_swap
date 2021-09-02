@@ -6,15 +6,15 @@
 /*   By: aperez-b <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 10:45:14 by aperez-b          #+#    #+#             */
-/*   Updated: 2021/09/01 20:22:56 by aperez-b         ###   ########.fr       */
+/*   Updated: 2021/09/02 21:03:33 by aperez-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lib/push_swap.h"
 
-static t_stack	*st_parse(int argc, char **argv)
+static t_list	*st_parse(int argc, char **argv)
 {
-	t_stack	*a;
+	t_list	*a;
 	int		i;
 	int		content;
 
@@ -30,20 +30,19 @@ static t_stack	*st_parse(int argc, char **argv)
 		if (ft_atoi2(argv[i++], &content) == -1 || \
 			st_in_stack(a, (void *)&content, sizeof(int)))
 		{
-			st_freestack(&a);
+			ft_lstclear(&a, free);
 			ft_putstr_fd("Error\n", 1);
 			return (NULL);
 		}
-		st_push(&a, (void *)&content, sizeof(int));
-		st_rotate_ab(&a);
+		ft_lstadd_back(&a, st_newstack((void *)&content, sizeof(int)));
 	}
 	return (a);
 }
 
 int	main(int argc, char **argv)
 {
-	t_stack	*a;
-	t_stack	*b;
+	t_list	*a;
+	t_list	*b;
 
 	b = NULL;
 	a = st_parse(argc, argv);
@@ -59,7 +58,7 @@ int	main(int argc, char **argv)
 	ft_putstr_fd("Stack ordered: ", 1);
 	ft_putnbr_fd(st_is_ordered(a), 1);
 	ft_putstr_fd("\n\n", 1);
-	st_freestack(&a);
-	st_freestack(&b);
+	ft_lstclear(&a, free);
+	ft_lstclear(&b, free);
 	return (0);
 }

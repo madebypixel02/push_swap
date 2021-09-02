@@ -6,93 +6,82 @@
 /*   By: aperez-b <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 16:30:04 by aperez-b          #+#    #+#             */
-/*   Updated: 2021/08/29 22:53:10 by aperez-b         ###   ########.fr       */
+/*   Updated: 2021/09/02 21:10:24 by aperez-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lib/stack.h"
 
-/* Alternate swap algorithm in case the other one causes trouble */
-/*void	st_swap_ab(t_stack **stack)
-{
-	void	*first;
-	void	*second;
-
-	if (st_stacklen(*stack) > 1)
-	{
-		first = st_pop(stack);
-		second = st_pop(stack);
-		st_push(stack, first, sizeof(int));
-		st_push(stack, second, sizeof(int));
-		free(first);
-		free(second);
-	}
-}*/
-
-void	st_swap_ab(t_stack **stack)
+void	st_swap_ab(t_list **stack, char c)
 {
 	void	*temp;
 
-	if (st_stacklen(*stack) > 1)
+	if (ft_lstsize(*stack) > 1)
 	{
 		temp = stack[0]->content;
 		stack[0]->content = stack[0]->next->content;
 		stack[0]->next->content = temp;
 	}
+	if (c == 'a')
+		ft_putstr_fd("sa\n", 1);
+	if (c == 'b')
+		ft_putstr_fd("sb\n", 1);
 }
 
-void	st_push_ab(t_stack **a, t_stack **b)
+void	st_push_ab(t_list **a, t_list **b, char c)
 {
 	void	*temp;
 
-	if (st_stacklen(*b))
+	if (ft_lstsize(*b))
 	{
-		temp = st_pop(b);
+		temp = st_pop(b, sizeof(int));
 		st_push(a, temp, sizeof(int));
 		free(temp);
 	}
+	if (c == 'a')
+		ft_putstr_fd("pa\n", 1);
+	if (c == 'b')
+		ft_putstr_fd("pb\n", 1);
 }
 
-int	st_rotate_ab(t_stack **stack)
+int	st_rotate_ab(t_list **stack, char c)
 {
 	void	*content;
-	t_stack	*new;
-	t_stack	*temp;
 
-	temp = *stack;
-	if (st_stacklen(temp) > 1)
+	if (ft_lstsize(*stack) > 1)
 	{
-		while (temp->next)
-			temp = temp->next;
-		content = st_pop(stack);
-		new = st_newstack(content, sizeof(int));
-		if (!new)
-			return (-1);
-		free(content);
-		temp->next = new;
-		new->prev = temp;
+		content = st_pop(stack, sizeof(int));
+		ft_lstadd_back(stack, ft_lstnew(content));
 	}
+	if (c == 'a')
+		ft_putstr_fd("ra\n", 1);
+	if (c == 'b')
+		ft_putstr_fd("rb\n", 1);
 	return (0);
 }
 
-int	st_rrotate_ab(t_stack **stack)
+int	st_rrotate_ab(t_list **stack, char c)
 {
 	void	*content;
-	t_stack	*temp;
+	t_list	*temp;
 
 	if (!stack[0])
 		return (-1);
 	temp = *stack;
-	if (st_stacklen(temp) > 1)
+	if (ft_lstsize(temp) > 1)
 	{
 		while (temp->next)
 			temp = temp->next;
 		content = temp->content;
-		temp->prev->next = NULL;
 		free(temp);
 		temp = NULL;
 		st_push(stack, content, sizeof(int));
 		free(content);
 	}
+	if (c == 'a')
+		ft_putstr_fd("rra\n", 1);
+	if (c == 'b')
+		ft_putstr_fd("rrb\n", 1);
+
 	return (0);
 }

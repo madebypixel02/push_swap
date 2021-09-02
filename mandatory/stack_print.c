@@ -6,13 +6,13 @@
 /*   By: aperez-b <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 11:12:19 by aperez-b          #+#    #+#             */
-/*   Updated: 2021/09/01 11:12:55 by aperez-b         ###   ########.fr       */
+/*   Updated: 2021/09/01 21:19:22 by aperez-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lib/push_swap.h"
 
-t_stack	*st_printstack(t_stack *stack)
+t_list	*st_printstack(t_list *stack)
 {
 	if (stack)
 	{
@@ -31,14 +31,10 @@ t_stack	*st_printstack(t_stack *stack)
 	return (stack);
 }
 
-int	st_printstack_ab(t_stack *a, t_stack *b)
+int	st_printstack_ab(t_list *a, t_list *b)
 {
 	if (!a && !b)
 		return (ft_putstr_fd("Error\n", 2));
-	while (a && a->prev)
-		a = a->prev;
-	while (b && b->prev)
-		b = b->prev;
 	while (a || b)
 	{
 		a = st_printstack(a);
