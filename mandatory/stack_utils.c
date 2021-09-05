@@ -6,7 +6,7 @@
 /*   By: aperez-b <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 16:26:30 by aperez-b          #+#    #+#             */
-/*   Updated: 2021/09/02 20:56:48 by aperez-b         ###   ########.fr       */
+/*   Updated: 2021/09/05 11:47:59 by aperez-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,19 +25,19 @@ int	st_in_stack(t_list *stack, void *content, size_t size)
 	return (0);
 }
 
-int	st_is_ordered(t_list *stack)
+int	st_is_ordered(t_list *a, t_list *b)
 {
 	void	*prev;
 
 	prev = NULL;
-	if (!stack)
+	if (!a || b)
 		return (0);
-	while (stack)
+	while (a)
 	{
-		if (prev && *(int *)prev > *(int *)stack->content)
+		if (prev && *(int *)prev > *(int *)a->content)
 			return (0);
-		prev = stack->content;
-		stack = stack->next;
+		prev = a->content;
+		a = a->next;
 	}
 	return (1);
 }

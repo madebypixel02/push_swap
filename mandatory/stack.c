@@ -6,27 +6,31 @@
 /*   By: aperez-b <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 09:58:17 by aperez-b          #+#    #+#             */
-/*   Updated: 2021/09/01 21:59:36 by aperez-b         ###   ########.fr       */
+/*   Updated: 2021/09/05 15:09:35 by aperez-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lib/stack.h"
 
-void	*st_pop(t_list **stack, int size)
+void	*st_pop(t_list **stack)
 {
 	void	*out;
-	t_list	*temp;
+	t_list	*head;
 
 	out = NULL;
-	if (!stack[0])
+	if (!stack || !stack[0])
 		return (NULL);
-	temp = stack[0]->next;
-	out = malloc(size);
-	if (!out)
-		return (NULL);
-	ft_memcpy(out, stack[0]->content, size);
-	ft_lstdelone(stack[0], free);
-	*stack = temp->next;
+	head = *stack;
+	if (head->next)
+	{
+		*stack = head->next;
+		out = head->content;
+		free(head);
+		return (out);
+	}
+	out = head->content;
+	free(head);
+	*stack = NULL;
 	return (out);
 }
 

@@ -6,7 +6,7 @@
 /*   By: aperez-b <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 11:12:19 by aperez-b          #+#    #+#             */
-/*   Updated: 2021/09/01 21:19:22 by aperez-b         ###   ########.fr       */
+/*   Updated: 2021/09/05 15:09:48 by aperez-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,3 @@ int	st_printstack_ab(t_list *a, t_list *b)
 	ft_putstr_fd("-\t\t-\na\t\tb\n\n\n", 1);
 	return (0);
 }
-

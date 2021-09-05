@@ -6,7 +6,7 @@
 /*   By: aperez-b <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 09:58:49 by aperez-b          #+#    #+#             */
-/*   Updated: 2021/09/02 21:05:47 by aperez-b         ###   ########.fr       */
+/*   Updated: 2021/09/05 15:05:31 by aperez-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include "../libft/lib/libft.h"
 
 /* Deletes element at the top of the stack and returns it */
-void	*st_pop(t_list **stack, int size);
+void	*st_pop(t_list **stack);
 
 /* Adds new node at the top of the stack */
 int		st_push(t_list **stack, void *newcontent, size_t size);
@@ -32,13 +32,13 @@ t_list	*st_printstack(t_list *stack);
 int		st_printstack_ab(t_list *a, t_list *b);
 
 /* Swaps first two elements of a stack if needed */
-void	st_swap_ab(t_list **stack, char c);
+int		st_swap_ab(t_list **stack, char c);
 
 /* Performs st_swap_ab on both a and b */
-void	st_swap_ss(t_list **a, t_list **b);
+int		st_swap_ss(t_list **a, t_list **b);
 
 /* Move top of second stack to top of first stack */
-void	st_push_ab(t_list **a, t_list **b, char c);
+int		st_push_ab(t_list **a, t_list **b, char c);
 
 /* Moves every element one position up */
 int		st_rotate_ab(t_list **stack, char c);
@@ -56,7 +56,7 @@ int		st_rrotate_rrr(t_list **a, t_list **b);
 int		st_in_stack(t_list *stack, void *content, size_t size);
 
 /* Returns 1 if stack is ordered */
-int		st_is_ordered(t_list *stack);
+int		st_is_ordered(t_list *a, t_list *b);
 
 /* Returns min element of a stack */
 void	*st_min(t_list *stack);
