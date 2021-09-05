@@ -1,5 +1,5 @@
 libft-unit-test/
-libft/
+libft
 libftTester/
 printfTester/
 pft_2019/
@@ -13,7 +13,7 @@ a.out
 .DS_Store
 tempCodeRunnerFile.c
 *.swp
-get_next_line/
+get_next_line
 so_long
 push_swap
 vgcore*
