@@ -6,36 +6,54 @@
 /*   By: aperez-b <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 10:45:14 by aperez-b          #+#    #+#             */
-/*   Updated: 2021/09/05 15:08:07 by aperez-b         ###   ########.fr       */
+/*   Updated: 2021/09/05 17:57:07 by aperez-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lib/push_swap.h"
 #include <stdio.h>
 
+static int	st_check_value(char *argv, t_list **a)
+{
+	int		j;
+	long	content;
+
+	j = 0;
+	while (argv[j])
+	{
+		if (ft_atoi2(&argv[j], &content) == -1 || \
+			st_in_stack(*a, (void *)&content, sizeof(int)))
+		{
+			ft_lstclear(a, free);
+			ft_putstr_fd("Error\n", 1);
+			return (-1);
+		}
+		ft_lstadd_back(a, st_newstack((void *)&content, sizeof(int)));
+		while (ft_isspace(argv[j]))
+			j++;
+		j += ft_strchr("+-", argv[j]) != 0;
+		while (ft_isdigit(argv[j]))
+			j++;
+	}
+	return (0);
+}
+
 static t_list	*st_parse(int argc, char **argv)
 {
 	t_list	*a;
 	int		i;
-	int		content;
 
 	a = NULL;
-	i = 1;
+	i = 0;
 	if (argc < 2)
 	{
 		ft_putstr_fd("Error\n", 1);
 		return (NULL);
 	}
-	while (i < argc)
+	while (++i < argc)
 	{
-		if (ft_atoi2(argv[i++], &content) == -1 || \
-			st_in_stack(a, (void *)&content, sizeof(int)))
-		{
-			ft_lstclear(&a, free);
-			ft_putstr_fd("Error\n", 1);
+		if (st_check_value(argv[i], &a) == -1)
 			return (NULL);
-		}
-		ft_lstadd_back(&a, st_newstack((void *)&content, sizeof(int)));
 	}
 	return (a);
 }
