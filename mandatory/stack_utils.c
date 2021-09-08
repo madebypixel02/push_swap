@@ -6,11 +6,12 @@
 /*   By: aperez-b <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 16:26:30 by aperez-b          #+#    #+#             */
-/*   Updated: 2021/09/08 17:56:01 by aperez-b         ###   ########.fr       */
+/*   Updated: 2021/09/08 21:07:37 by aperez-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lib/stack.h"
+#include <stddef.h>
 
 int	st_in_stack(t_list *stack, void *content, size_t size)
 {
@@ -25,21 +26,19 @@ int	st_in_stack(t_list *stack, void *content, size_t size)
 	return (0);
 }
 
-int	st_is_ordered(t_list *a, t_list *b)
+int	st_find(t_list *stack, void *content, size_t size)
 {
-	void	*prev;
+	int	i;
 
-	prev = NULL;
-	if (!a || b)
-		return (0);
-	while (a)
+	i = 0;
+	while (stack)
 	{
-		if (prev && *(int *)prev > *(int *)a->content)
-			return (0);
-		prev = a->content;
-		a = a->next;
+		if (!ft_memcmp(stack->content, content, size))
+			return (i);
+		stack = stack->next;
+		i++;
 	}
-	return (1);
+	return (-1);
 }
 
 void	*st_min(t_list *stack)

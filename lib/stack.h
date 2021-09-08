@@ -6,7 +6,7 @@
 /*   By: aperez-b <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 09:58:49 by aperez-b          #+#    #+#             */
-/*   Updated: 2021/09/08 18:21:57 by aperez-b         ###   ########.fr       */
+/*   Updated: 2021/09/08 22:59:27 by aperez-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,14 @@ int		st_rrotate_rrr(t_list **a, t_list **b);
 /* Returns 1 if the content matches the content at the given node */
 int		st_in_stack(t_list *stack, void *content, size_t size);
 
+/* Returns first occurrence of content in the stack, or -1 */
+int		st_find(t_list *stack, void *content, size_t size);
+
 /* Returns 1 if stack a is ordered and b is empty */
 int		st_is_ordered(t_list *a, t_list *b);
+
+/* Moves an element to the top as efficiently as possible */
+int		st_to_top(t_list **a, t_list **b, void *content, char c);
 
 /* Returns min element of a stack */
 void	*st_min(t_list *stack);

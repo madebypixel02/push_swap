@@ -6,7 +6,7 @@
 #    By: aperez-b <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/29 10:50:06 by aperez-b          #+#    #+#              #
-#    Updated: 2021/09/05 15:08:25 by aperez-b         ###   ########.fr        #
+#    Updated: 2021/09/08 22:15:51 by aperez-b         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,12 +25,11 @@ UNAME = $(shell uname -s)
 
 # Properties for MacOS
 ECHO = echo
-CDEBUG = -g3 -fsanitize=address
+CDEBUG = #-g3 -fsanitize=address
 ifeq ($(UNAME), Linux)
 	#Properties for Linux
 	ECHO = echo -e
 	LEAKS = valgrind --leak-check=full --show-leak-kinds=all -s -q 
-	CDEBUG =
 endif
 
 # Make variables
@@ -45,7 +44,7 @@ NAME = push_swap
 INC = #-I libft/lib/
 LIB = #-L libft/
 
-SOURCE_M = stack.c stack_utils.c stack_transform.c stack_multi.c order.c stack_print.c
+SOURCE_M = stack.c stack_utils.c stack_transform.c stack_multi.c order.c order_utils.c stack_print.c
 
 SOURCE_B = 
 
