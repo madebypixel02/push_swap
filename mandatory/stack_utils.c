@@ -6,7 +6,7 @@
 /*   By: aperez-b <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 16:26:30 by aperez-b          #+#    #+#             */
-/*   Updated: 2021/09/05 17:55:39 by aperez-b         ###   ########.fr       */
+/*   Updated: 2021/09/08 17:56:01 by aperez-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,19 @@ void	*st_max(t_list *stack)
 		stack = stack->next;
 	}
 	return (max);
+}
+
+t_list	*st_get_at(t_list *stack, int index)
+{
+	int		i;
+
+	i = 0;
+	while (stack)
+	{
+		if (i == index)
+			return (stack);
+		i++;
+		stack = stack->next;
+	}
+	return (NULL);
 }

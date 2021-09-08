@@ -6,7 +6,7 @@
 /*   By: aperez-b <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 11:12:19 by aperez-b          #+#    #+#             */
-/*   Updated: 2021/09/06 14:10:03 by aperez-b         ###   ########.fr       */
+/*   Updated: 2021/09/08 17:33:12 by aperez-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	st_printstack_ab(t_list *a, t_list *b)
 {
 	if (!a && !b)
 		return (ft_putstr_fd("Error\n", 2));
+	write(1, "\n", 1);
 	while (a || b)
 	{
 		a = st_printstack(a);
@@ -44,6 +45,6 @@ int	st_printstack_ab(t_list *a, t_list *b)
 	ft_putnchar_fd('-', 1, 10);
 	ft_putstr_fd("\t", 1);
 	ft_putnchar_fd('-', 1, 10);
-	ft_putstr_fd("\na\t\tb\n\n\n", 1);
+	ft_putstr_fd("\na\t\tb\n\n", 1);
 	return (0);
 }
