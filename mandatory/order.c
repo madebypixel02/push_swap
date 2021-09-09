@@ -6,7 +6,7 @@
 /*   By: aperez-b <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 10:50:03 by aperez-b          #+#    #+#             */
-/*   Updated: 2021/09/08 23:03:29 by aperez-b         ###   ########.fr       */
+/*   Updated: 2021/09/09 14:59:33 by aperez-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,15 @@ int	st_order(t_list **a, t_list **b)
 {
 	if (st_is_ordered(*a, *b))
 		return (0);
+	if (ft_lstsize(*a) == 2)
+		return(st_swap_ab(a, b, 'a'));
 	while (ft_lstsize(*a) > 3)
 	{
 		st_to_top(a, b, st_max(*a), 'a');
 		st_push_ab(b, a, 'b');
+		st_swap_ab(b, a, 'b');
 	}
-	st_sort_small(a, b);
+		st_sort_small(a, b);
 	return (0);
 }
 
