@@ -6,7 +6,7 @@
 /*   By: aperez-b <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 10:45:14 by aperez-b          #+#    #+#             */
-/*   Updated: 2021/09/08 23:01:28 by aperez-b         ###   ########.fr       */
+/*   Updated: 2021/09/14 11:32:38 by aperez-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int	st_check_value(char *argv, t_list **a)
 	while (argv[j])
 	{
 		if (ft_atoi2(&argv[j], &content) == -1 || \
-			st_in_stack(*a, (void *)&content, sizeof(int)))
+			st_find(*a, (void *)&content, sizeof(int)) != -1)
 		{
 			ft_lstclear(a, free);
 			ft_putstr_fd("Error\n", 1);
@@ -71,9 +71,8 @@ int	main(int argc, char **argv)
 	ft_putstr_fd("Stack ordered: ", 1);
 	ft_putnbr_fd(st_is_ordered(a, b), 1);
 	ft_putstr_fd("\n\n", 1);
-	st_find(a, st_min(a), sizeof(int));
-	st_order(&a, &b);
 	ft_putstr_fd("\n", 1);
+	st_order(&a, &b);
 	st_printstack_ab(a, b);
 	ft_putstr_fd("Stack ordered: ", 1);
 	ft_putnbr_fd(st_is_ordered(a, b), 1);

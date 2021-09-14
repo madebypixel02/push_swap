@@ -6,7 +6,7 @@
 /*   By: aperez-b <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 09:58:49 by aperez-b          #+#    #+#             */
-/*   Updated: 2021/09/08 22:59:27 by aperez-b         ###   ########.fr       */
+/*   Updated: 2021/09/14 15:02:01 by aperez-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,6 @@ int		st_rrotate_ab(t_list **a, t_list **b, char c);
 /* Performs st_rrotate_ab on both a and b */
 int		st_rrotate_rrr(t_list **a, t_list **b);
 
-/* Returns 1 if the content matches the content at the given node */
-int		st_in_stack(t_list *stack, void *content, size_t size);
-
 /* Returns first occurrence of content in the stack, or -1 */
 int		st_find(t_list *stack, void *content, size_t size);
 
@@ -65,12 +62,15 @@ int		st_is_ordered(t_list *a, t_list *b);
 int		st_to_top(t_list **a, t_list **b, void *content, char c);
 
 /* Returns min element of a stack */
-void	*st_min(t_list *stack);
+t_list	*st_min(t_list *stack);
 
 /* Returns max element of a stack */
-void	*st_max(t_list *stack);
+t_list	*st_max(t_list *stack);
 
 /* Retrieves node at the given index, or NULL */
 t_list	*st_get_at(t_list *stack, int index);
+
+/* Changes content at given index */
+void	st_replace_at(t_list **stack, int index, void *nw, int size);
 
 #endif

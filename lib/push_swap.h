@@ -6,7 +6,7 @@
 /*   By: aperez-b <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 10:55:09 by aperez-b          #+#    #+#             */
-/*   Updated: 2021/09/08 20:42:52 by aperez-b         ###   ########.fr       */
+/*   Updated: 2021/09/14 10:25:57 by aperez-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 # define PUSH_SWAP_H
 
 # include "stack.h"
+
+/* Translates elements from a stack such that the min element is 0 */
+void	st_translate(t_list **stack);
 
 /* Starts ordering stack */
 int		st_order(t_list **a, t_list **b);

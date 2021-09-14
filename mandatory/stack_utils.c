@@ -6,25 +6,12 @@
 /*   By: aperez-b <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 16:26:30 by aperez-b          #+#    #+#             */
-/*   Updated: 2021/09/08 21:07:37 by aperez-b         ###   ########.fr       */
+/*   Updated: 2021/09/14 14:50:30 by aperez-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lib/stack.h"
 #include <stddef.h>
-
-int	st_in_stack(t_list *stack, void *content, size_t size)
-{
-	if (!stack)
-		return (0);
-	while (stack)
-	{
-		if (!ft_memcmp(content, stack->content, size))
-			return (1);
-		stack = stack->next;
-	}
-	return (0);
-}
 
 int	st_find(t_list *stack, void *content, size_t size)
 {
@@ -41,33 +28,29 @@ int	st_find(t_list *stack, void *content, size_t size)
 	return (-1);
 }
 
-void	*st_min(t_list *stack)
+t_list	*st_min(t_list *stack)
 {
-	void	*min;
+	t_list	*min;
 
 	min = NULL;
-	if (!stack)
-		return (min);
 	while (stack)
 	{
-		if (!min || *(int *)min > *(int *)stack->content)
-			min = stack->content;
+		if (!min || *(int *)min->content > *(int *)stack->content)
+			min = stack;
 		stack = stack->next;
 	}
 	return (min);
 }
 
-void	*st_max(t_list *stack)
+t_list	*st_max(t_list *stack)
 {
-	void	*max;
+	t_list	*max;
 
 	max = NULL;
-	if (!stack)
-		return (max);
 	while (stack)
 	{
-		if (!max || *(int *)max < *(int *)stack->content)
-			max = stack->content;
+		if (!max || *(int *)max->content < *(int *)stack->content)
+			max = stack;
 		stack = stack->next;
 	}
 	return (max);
@@ -86,4 +69,24 @@ t_list	*st_get_at(t_list *stack, int index)
 		stack = stack->next;
 	}
 	return (NULL);
+}
+
+void	st_replace_at(t_list **stack, int index, void *nw, int size)
+{
+	int		i;
+	t_list	*start;
+
+	i = 0;
+	start = *stack;
+	while (start)
+	{
+		if (i == index)
+		{
+			free(start->content);
+			start->content = malloc(size);
+			ft_memcpy(start->content, nw, size);
+		}
+		i++;
+		start = start->next;
+	}
 }
