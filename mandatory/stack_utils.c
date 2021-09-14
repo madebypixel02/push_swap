@@ -6,7 +6,7 @@
 /*   By: aperez-b <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 16:26:30 by aperez-b          #+#    #+#             */
-/*   Updated: 2021/09/14 14:50:30 by aperez-b         ###   ########.fr       */
+/*   Updated: 2021/09/14 15:32:36 by aperez-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,10 @@ void	st_replace_at(t_list **stack, int index, void *nw, int size)
 		if (i == index)
 		{
 			free(start->content);
+			start->content = NULL;
 			start->content = malloc(size);
 			ft_memcpy(start->content, nw, size);
+			break ;
 		}
 		i++;
 		start = start->next;

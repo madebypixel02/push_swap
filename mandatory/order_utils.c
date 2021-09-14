@@ -6,7 +6,7 @@
 /*   By: aperez-b <aperez-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/08 20:37:34 by aperez-b          #+#    #+#             */
-/*   Updated: 2021/09/14 14:50:54 by aperez-b         ###   ########.fr       */
+/*   Updated: 2021/09/14 15:36:09 by aperez-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	st_translate(t_list **stack)
 	while (i++ < len)
 		ft_lstadd_front(&aux, st_newstack((void *)&content, sizeof(int)));
 	i = 0;
-	content = *(int *)st_max(*stack);
+	content = *(int *)st_max(*stack)->content + 1;
 	while (i < len)
 	{
 		st_replace_at(&aux, st_find(*stack, st_min(*stack)->content, \
@@ -79,5 +79,6 @@ void	st_translate(t_list **stack)
 		content++;
 	}
 	ft_lstclear(stack, free);
+	st_printstack_ab(aux, NULL);
 	*stack = aux;
 }
