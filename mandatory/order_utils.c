@@ -6,7 +6,7 @@
 /*   By: aperez-b <aperez-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/08 20:37:34 by aperez-b          #+#    #+#             */
-/*   Updated: 2021/09/14 15:36:09 by aperez-b         ###   ########.fr       */
+/*   Updated: 2021/09/17 17:06:34 by aperez-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,6 @@ void	st_translate(t_list **stack)
 		content++;
 	}
 	ft_lstclear(stack, free);
-	st_printstack_ab(aux, NULL);
+	st_printstack_ab(aux, NULL, "0123456789");
 	*stack = aux;
 }

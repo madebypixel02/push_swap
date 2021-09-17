@@ -6,7 +6,7 @@
 /*   By: aperez-b <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 10:45:14 by aperez-b          #+#    #+#             */
-/*   Updated: 2021/09/14 11:32:38 by aperez-b         ###   ########.fr       */
+/*   Updated: 2021/09/17 17:06:55 by aperez-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,13 +67,14 @@ int	main(int argc, char **argv)
 	a = st_parse(argc, argv);
 	if (!a)
 		return (0);
-	st_printstack_ab(a, b);
+	st_printstack_ab(a, b, "0123456789");
 	ft_putstr_fd("Stack ordered: ", 1);
 	ft_putnbr_fd(st_is_ordered(a, b), 1);
 	ft_putstr_fd("\n\n", 1);
 	ft_putstr_fd("\n", 1);
 	st_order(&a, &b);
-	st_printstack_ab(a, b);
+	st_printstack_ab(a, b, "0123456789");
+	st_printstack_ab(a, b, "01");
 	ft_putstr_fd("Stack ordered: ", 1);
 	ft_putnbr_fd(st_is_ordered(a, b), 1);
 	ft_putstr_fd("\n\n", 1);

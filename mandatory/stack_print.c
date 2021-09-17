@@ -6,17 +6,17 @@
 /*   By: aperez-b <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 11:12:19 by aperez-b          #+#    #+#             */
-/*   Updated: 2021/09/08 17:33:12 by aperez-b         ###   ########.fr       */
+/*   Updated: 2021/09/17 17:13:27 by aperez-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lib/push_swap.h"
 
-t_list	*st_printstack(t_list *stack)
+t_list	*st_printstack(t_list *stack, char *base)
 {
 	if (stack)
 	{
-		ft_putnbr_fd(*(int *)stack->content, 1);
+		ft_putnbr_base_fd(*(int *)stack->content, base, 1);
 		if (ft_nbrlen(*(int *)stack->content, 10) > 7)
 			ft_putnchar_fd('\t', 1, 1);
 		else
@@ -31,15 +31,15 @@ t_list	*st_printstack(t_list *stack)
 	return (stack);
 }
 
-int	st_printstack_ab(t_list *a, t_list *b)
+int	st_printstack_ab(t_list *a, t_list *b, char *base)
 {
 	if (!a && !b)
 		return (ft_putstr_fd("Error\n", 2));
 	write(1, "\n", 1);
 	while (a || b)
 	{
-		a = st_printstack(a);
-		b = st_printstack(b);
+		a = st_printstack(a, base);
+		b = st_printstack(b, base);
 		ft_putchar_fd('\n', 1);
 	}
 	ft_putnchar_fd('-', 1, 10);

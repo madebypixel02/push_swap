@@ -6,7 +6,7 @@
 /*   By: aperez-b <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 09:58:49 by aperez-b          #+#    #+#             */
-/*   Updated: 2021/09/14 15:02:01 by aperez-b         ###   ########.fr       */
+/*   Updated: 2021/09/17 17:05:28 by aperez-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ int		st_push(t_list **stack, void *newcontent, size_t size);
 t_list	*st_newstack(void *newcontent, size_t size);
 
 /* Prints stack from current node and tries to move to the next one */
-t_list	*st_printstack(t_list *stack);
+t_list	*st_printstack(t_list *stack, char *base);
 
 /* Prints both stacks side-by-side */
-int		st_printstack_ab(t_list *a, t_list *b);
+int		st_printstack_ab(t_list *a, t_list *b, char *base);
 
 /* Swaps first two elements of a stack if needed */
 int		st_swap_ab(t_list **a, t_list **b, char c);
