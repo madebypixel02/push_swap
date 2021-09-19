@@ -6,26 +6,26 @@
 /*   By: aperez-b <aperez-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/08 20:37:34 by aperez-b          #+#    #+#             */
-/*   Updated: 2021/09/17 17:06:34 by aperez-b         ###   ########.fr       */
+/*   Updated: 2021/09/19 14:08:14 by aperez-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lib/push_swap.h"
 #include <stddef.h>
 
-int	st_is_ordered(t_list *a, t_list *b)
+int	st_is_ordered(t_list *stack)
 {
 	void	*prev;
 
 	prev = NULL;
-	if (!a || b)
+	if (!stack)
 		return (0);
-	while (a)
+	while (stack)
 	{
-		if (prev && *(int *)prev > *(int *)a->content)
+		if (prev && *(int *)prev > *(int *)stack->content)
 			return (0);
-		prev = a->content;
-		a = a->next;
+		prev = stack->content;
+		stack = stack->next;
 	}
 	return (1);
 }
@@ -45,9 +45,9 @@ int	st_to_top(t_list **a, t_list **b, void *content, char c)
 		while (ft_memcmp(aux, a[0]->content, sizeof(int)))
 		{
 			if (pos > (ft_lstsize(*a) - 1) / 2)
-				st_rrotate_ab(a, b, c);
+				st_rrotate_ab(a, c);
 			else
-				st_rotate_ab(a, b, c);
+				st_rotate_ab(a, c);
 		}
 	}
 	free(aux);
@@ -79,6 +79,5 @@ void	st_translate(t_list **stack)
 		content++;
 	}
 	ft_lstclear(stack, free);
-	st_printstack_ab(aux, NULL, "0123456789");
 	*stack = aux;
 }

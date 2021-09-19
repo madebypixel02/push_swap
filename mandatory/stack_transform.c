@@ -6,23 +6,18 @@
 /*   By: aperez-b <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 16:30:04 by aperez-b          #+#    #+#             */
-/*   Updated: 2021/09/08 23:01:13 by aperez-b         ###   ########.fr       */
+/*   Updated: 2021/09/19 12:33:34 by aperez-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lib/stack.h"
 
-int	st_swap_ab(t_list **a, t_list **b, char c)
+int	st_swap_ab(t_list **a, char c)
 {
 	void	*temp;
 	t_list	*head;
 
 	head = *a;
-	if ((c == 'a' && ft_lstsize(*a) > 1 && ft_lstsize(*b) > 1 && \
-		*(int *)b[0]->content < *(int *)b[0]->next->content) || \
-		(c == 'b' && ft_lstsize(*a) > 1 && ft_lstsize(*b) > 1 && \
-		*(int *)b[0]->content > *(int *)b[0]->next->content))
-		return (st_swap_ss(a, b));
 	if (ft_lstsize(*a) > 1)
 	{
 		temp = head->content;
@@ -55,15 +50,10 @@ int	st_push_ab(t_list **a, t_list **b, char c)
 	return (0);
 }
 
-int	st_rotate_ab(t_list **a, t_list **b, char c)
+int	st_rotate_ab(t_list **a, char c)
 {
 	void	*content;
 
-	if ((c == 'a' && ft_lstsize(*a) > 1 && ft_lstsize(*b) > 1 && \
-		*(int *)b[0]->content < *(int *)b[0]->next->content) || \
-		(c == 'b' && ft_lstsize(*a) > 1 && ft_lstsize(*b) > 1 && \
-		*(int *)b[0]->content > *(int *)b[0]->next->content))
-		return (st_rotate_rr(a, b));
 	if (ft_lstsize(*a) > 1)
 	{
 		content = st_pop(a);
@@ -77,18 +67,12 @@ int	st_rotate_ab(t_list **a, t_list **b, char c)
 	return (0);
 }
 
-int	st_rrotate_ab(t_list **a, t_list **b, char c)
+int	st_rrotate_ab(t_list **a, char c)
 {
 	void	*content;
 	t_list	*last_a;
 	t_list	*prev;
 
-	if ((c == 'a' && ft_lstsize(*a) > 1 && ft_lstsize(*b) > \
-		1 && *(int *)b[0]->content < *(int *)st_get_at(*b, \
-		ft_lstsize(*b) - 1)->content) || (c == 'b' && ft_lstsize(*a) > \
-		1 && ft_lstsize(*b) > 1 && *(int *)b[0]->content > \
-		*(int *)st_get_at(*b, ft_lstsize(*b) - 1)->content))
-		return (st_rrotate_rrr(a, b));
 	if (ft_lstsize(*a) > 1)
 	{
 		last_a = st_get_at(*a, ft_lstsize(*a) - 1);

@@ -6,7 +6,7 @@
 /*   By: aperez-b <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 09:58:49 by aperez-b          #+#    #+#             */
-/*   Updated: 2021/09/17 17:21:58 by aperez-b         ###   ########.fr       */
+/*   Updated: 2021/09/19 12:35:42 by aperez-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_list	*st_printstack(t_list *stack, char *base, int max_value);
 int		st_printstack_ab(t_list *a, t_list *b, char *base);
 
 /* Swaps first two elements of a stack if needed */
-int		st_swap_ab(t_list **a, t_list **b, char c);
+int		st_swap_ab(t_list **a, char c);
 
 /* Performs st_swap_ab on both a and b */
 int		st_swap_ss(t_list **a, t_list **b);
@@ -41,13 +41,13 @@ int		st_swap_ss(t_list **a, t_list **b);
 int		st_push_ab(t_list **a, t_list **b, char c);
 
 /* Moves every element one position up */
-int		st_rotate_ab(t_list **a, t_list **b, char c);
+int		st_rotate_ab(t_list **a, char c);
 
 /* Performs st_rotate_ab on both a and b */
 int		st_rotate_rr(t_list **a, t_list **b);
 
 /* Moves every element one position down */
-int		st_rrotate_ab(t_list **a, t_list **b, char c);
+int		st_rrotate_ab(t_list **a, char c);
 
 /* Performs st_rrotate_ab on both a and b */
 int		st_rrotate_rrr(t_list **a, t_list **b);
@@ -56,7 +56,7 @@ int		st_rrotate_rrr(t_list **a, t_list **b);
 int		st_find(t_list *stack, void *content, size_t size);
 
 /* Returns 1 if stack a is ordered and b is empty */
-int		st_is_ordered(t_list *a, t_list *b);
+int		st_is_ordered(t_list *stack);
 
 /* Moves an element to the top as efficiently as possible */
 int		st_to_top(t_list **a, t_list **b, void *content, char c);

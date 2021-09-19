@@ -6,7 +6,7 @@
 #    By: aperez-b <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/29 10:50:06 by aperez-b          #+#    #+#              #
-#    Updated: 2021/09/08 22:15:51 by aperez-b         ###   ########.fr        #
+#    Updated: 2021/09/19 13:48:41 by aperez-b         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,14 +26,16 @@ UNAME = $(shell uname -s)
 # Properties for MacOS
 ECHO = echo
 CDEBUG = #-g3 -fsanitize=address
+CHECKER = tests/checker_Mac
 ifeq ($(UNAME), Linux)
 	#Properties for Linux
 	ECHO = echo -e
 	LEAKS = valgrind --leak-check=full --show-leak-kinds=all -s -q 
+	CHECKER = tests/checker_linux
 endif
 
 # Make variables
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = #-Wall -Wextra -Werror
 RM = rm -f
 CC = gcc
 DIR_M = mandatory
@@ -90,11 +92,15 @@ test: all
 	@if [ $(N) -le 0 ]; then \
 		$(ECHO) "Error"; \
 	else \
-		$(ECHO) "$(YELLOW)Performing test with custom parameters...$(DEFAULT)"; \
-		$(ECHO); \
-		$(ECHO) "Command: $(GRAY)$(LEAKS)./$(NAME) $(ARGS)$(DEFAULT)"; \
-		$(ECHO); \
-		$(LEAKS)./$(NAME) $(ARGS); \
+		$(ECHO) "$(YELLOW)Performing test with custom parameters...$(DEFAULT)\n"; \
+		$(ECHO) "Command: $(GRAY)$(LEAKS)./$(NAME) $(ARGS)$(DEFAULT)\n"; \
+		$(LEAKS)./$(NAME) $(ARGS) > .out.tmp; \
+		cat .out.tmp; \
+		printf "\nMoves: "; \
+	   	cat .out.tmp | wc -l; \
+		printf "Checker: "; \
+	   	cat .out.tmp | ./$(CHECKER) $(ARGS); \
+		$(RM) .out.tmp; \
 	fi
 
 clean:
