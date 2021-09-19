@@ -6,7 +6,7 @@
 /*   By: aperez-b <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 10:55:09 by aperez-b          #+#    #+#             */
-/*   Updated: 2021/09/19 12:18:52 by aperez-b         ###   ########.fr       */
+/*   Updated: 2021/09/19 17:07:10 by aperez-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,10 @@ int		st_order(t_list **a, t_list **b);
 /* Sorts in least moves for three numbers */
 void	st_sort_small(t_list **a, t_list **b);
 
-/* Returns middle number in a stack (to split numbers) */
-int		st_get_mid(t_list *stack);
-
-/* moves elements up to mid to stack b, ordering if necessary */
-void	st_split(t_list **a, t_list **b, int mid, int *count);
-
 /* Recursively uses bitwise radix sort algorithm to sort a */
 int		st_radix_sort(t_list **a, t_list **b, int max_len, int right_shift);
+
+/* Checks how many elements are ordered in a stack */
+int		st_get_ordered(t_list *a, t_list *b, char c);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: aperez-b <aperez-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/08 20:37:34 by aperez-b          #+#    #+#             */
-/*   Updated: 2021/09/19 14:08:14 by aperez-b         ###   ########.fr       */
+/*   Updated: 2021/09/19 16:58:48 by aperez-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	st_is_ordered(t_list *stack)
 	return (1);
 }
 
-int	st_to_top(t_list **a, t_list **b, void *content, char c)
+int	st_to_top(t_list **stack, void *content, char c)
 {
 	int		pos;
 	void	*aux;
@@ -39,15 +39,15 @@ int	st_to_top(t_list **a, t_list **b, void *content, char c)
 	if (!aux)
 		return (0);
 	ft_memcpy(aux, content, sizeof(int));
-	pos = st_find(*a, content, sizeof(int));
-	if (*(int *)a[0]->content != *(int *)aux && pos != -1)
+	pos = st_find(*stack, content, sizeof(int));
+	if (*(int *)stack[0]->content != *(int *)aux && pos != -1)
 	{
-		while (ft_memcmp(aux, a[0]->content, sizeof(int)))
+		while (ft_memcmp(aux, stack[0]->content, sizeof(int)))
 		{
-			if (pos > (ft_lstsize(*a) - 1) / 2)
-				st_rrotate_ab(a, c);
+			if (pos > (ft_lstsize(*stack) - 1) / 2)
+				st_rrotate_ab(stack, c);
 			else
-				st_rotate_ab(a, c);
+				st_rotate_ab(stack, c);
 		}
 	}
 	free(aux);
@@ -80,4 +80,33 @@ void	st_translate(t_list **stack)
 	}
 	ft_lstclear(stack, free);
 	*stack = aux;
+}
+
+int	st_get_ordered(t_list *a, t_list *b, char c)
+{
+	int	len;
+	int	count;
+
+	count = 0;
+	len = 0;
+	while (c == 'a' && a)
+	{
+		if (*(int *)a->content == len)
+			count++;
+		else
+			count = 0;
+		len++;
+		a = a->next;
+	}
+	len = ft_lstsize(b) - 1;
+	while (c == 'b' && b)
+	{
+		if (*(int *)b->content == len)
+			count++;
+		else
+			count = 0;
+		len--;
+		b = b->next;
+	}
+	return (count);
 }
