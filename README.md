@@ -100,7 +100,7 @@ Of course working with that implementation caused some problems with memory, esp
 
 When debating the optimal algorithm to sort the elements in ``a``, the idea of splitting into chunks kept coming up. However, I wanted to do something that appealed to me more. I ended up diving into radix sort, as it's quite simple to code and does a pretty decent job with two stacks. Also this method relies heavily on bitwise operators, so it was a great chance for me to figure out what bitwise is all about :)
 
-Note: crredits to this [medium](https://medium.com/nerd-for-tech/push-swap-tutorial-fa746e6aba1e) that helped me understand radix sort and bitwise operators.\
+Note: crredits to [this medium](https://medium.com/nerd-for-tech/push-swap-tutorial-fa746e6aba1e) that helped me understand radix sort and bitwise operators.\
 
 ### Bitwise Operators
 
