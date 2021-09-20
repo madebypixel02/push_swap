@@ -7,8 +7,8 @@
 * [The Sorting Algorithm](#the-sorting-algorithm)
   * [Bitwise Operators](#bitwise-operators)
   * [How Radix Sort Works](#how-radix-sort-works)
-* [Performance](#performance)
 * [Optimization](#optimization)
+* [Performance](#performance)
 * [Installation](#installation)
 * [Summary](#summary)
 
@@ -322,6 +322,15 @@ pa
 pa
 ```
 
+## Optimization
+
+This algorithm is pretty straightforward, and there are only a handful of ways to optimize it. First of all, I made a special case for sorting 7 numbers or less, which uses a more efficient algorithm than radix sort, sorting three numbers in less than 2 steps. To *actually* optimize radix sort, I tried a few things:
+
+* Don't push the bottom elements from a to b if they're already in place
+* Don't push the botttom elements from b to a if they're already in place
+* Check if the stack is already sorted before pushing to b
+* TBA
+
 ## Performance
 
 As I said before, this algorithm isn't the fastest one, yet it does a pretty good job overall. Here are the average moves needed to sort stacks of different sizes:
@@ -335,15 +344,6 @@ As I said before, this algorithm isn't the fastest one, yet it does a pretty goo
 | 500 | 6784 |
 
 Note: These numbers were obtained using [push_swap_tester](https://github.com/lmalki-h/push_swap_tester)
-
-## Optimization
-
-This algorithm is pretty straightforward, and there are only a handful of ways to optimize it. First of all, I made a special case for sorting 7 numbers or less, which uses a more efficient algorithm than radix-sort, sorting three numbers in less than 2 steps. To *actually* optimize radix, sort, I tried a few things:
-
-* Don't push the bottom elements from a to b if they're already in place
-* Don't push the botttom elements from b to a if they're already in place
-* Check if the stack is already sorted before pushing to b
-* TBA
 
 ## Installation
 
