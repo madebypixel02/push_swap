@@ -17,8 +17,8 @@ This project is all about sorting algorithms, but with a twist. We are given two
 
 Here are all the possible rotations we can do to help sort our stacks:
 
-| Rotation | Description |
-| :------: | :---------: |
+| Instruction | Description |
+| :---------: | :---------: |
 | ``sa`` | Swaps the first two elements in stack ``a`` |
 | ``sb`` | Swaps the first two elements in stack ``b`` |
 | ``ss`` | Performs ``sa`` and ``sb`` simultaneously |
