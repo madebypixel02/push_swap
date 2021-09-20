@@ -5,8 +5,10 @@
 * [Introduction](#introduction)
 * [Stack Implementation](#stack-implementation)
 * [The Sorting Algorithm](#the-sorting-algorithm)
-* [Optimization](#optimization)
+  * [Bitwise Operators](#bitwise-operators)
+  * [How Radix Sort Works](#how-radix-sort-works)
 * [Performance](#performance)
+* [Optimization](#optimization)
 * [Installation](#installation)
 * [Summary](#summary)
 
@@ -90,7 +92,30 @@ Of course working with that implementation caused some problems with memory, esp
 ## The Sorting Algorithm
 When debating the optimal algorithm to sort the elements in a, the idea of splitting into chunks kept popping up. However, I wanted to do something that appealed to me more. I ended up using radix sort, as it's quite simple to code and does a pretty decent job with two stacks. Also this method relies heavily on bitwise operators, so it was a great chance for me to figure out what bitwise is all about :)
 
-### How radix sort works
+### Bitwise Operators
+
+The two bitwise operators we'll use are ``>>`` and ``&``.
+
+The ``&`` operator compares similarly to ``&&``, and will return 1 if both elements in the comparison are 1:
+
+```
+1 & 1 = 1
+0 & 1 = 0
+1 & 0 = 0
+0 & 0 = 0
+```
+
+The ``>>`` operator right-shifts the number to the left a certain number of bytes, but never modifies any value:
+
+```
+1010 >> 0 = 1010
+1010 >> 1 = 101
+1010 >> 2 = 10
+1010 >> 3 = 1
+1010 >> 4 = 0
+```
+
+### How Radix Sort Works
 
 * General Idea
 
@@ -124,27 +149,6 @@ Stack after making all positive
 a		b
 
 The length of the stack is 5, so 5 - 1 = 4 is the maximum value of our translated stack
-```
-
-The two bitwise operators we'll use are ``>>`` and ``&``.
-
-The ``&`` operator compares similarly to ``&&``, and will return 1 if both elements in the comparison are 1:
-
-```
-1 & 1 = 1
-0 & 1 = 0
-1 & 0 = 0
-0 & 0 = 0
-```
-
-The ``>>`` operator right-shifts the number to the left a certain number of bytes, but never modifies any value:
-
-```
-1010 >> 0 = 1010
-1010 >> 1 = 101
-1010 >> 2 = 10
-1010 >> 3 = 1
-1010 >> 4 = 0
 ```
 
 * Radix sort in our stacks
@@ -309,3 +313,17 @@ pa
 pa
 pa
 ```
+
+## Performance
+
+As I said before, this algorithm isn't the fastest one, yet it does a pretty good job overall. Here are the average moves needed to sort stacks of different sizes:
+
+| Stack Size | Average Instructions to Sort |
+| :--------: | :--------------------------: |
+| 3 | 1 |
+| 5 | 4 |
+| 10 | 64 |
+| 100 | 1083 |
+| 500 | 6784 |
+
+Note: These numbers were obtained using [push_swap_tester](https://github.com/lmalki-h/push_swap_tester)
