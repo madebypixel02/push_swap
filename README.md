@@ -38,8 +38,7 @@ If any of these checks fail, the program must end with ``Error\n``.
 
 Here's an example input:
 ```
-./push_swap 3 4 1 2 6
-(or ./push_swap "3 4 1 2 6")
+❯ ./push_swap "3 4 1 2 6"
 
 The stack should look like this:
 
@@ -54,19 +53,19 @@ a		b
 ```
 And here are some incorrect inputs:
 ```shell
-./push_swap 3 4 1 2 3
+❯ ./push_swap 3 4 1 2 3
 Error
 
-./push_swap 3 4 1 2 six
+❯ ./push_swap 3 4 1 2 six
 Error
 
-./push_swap 3 4 1 2 2147483648
+❯ ./push_swap 3 4 1 2 2147483648
 Error
 ```
 
 Once everything has been checked, the program must print out a proposed set of instructions to sort the given numbers in the least number of steps, for example:
 ```shell
-./push_swap 2 1 0
+❯ ./push_swap 2 1 0
 sa
 rra
 ```
@@ -135,7 +134,7 @@ The idea with this algorithm is we take the multiples of two from ``a`` and pass
 
 To work with this algorithm, we must make all of our numbers positive. For this I have a function that takes the minimum element and changes it to zero. Then it takes the next smallest and makes it 1. Then keeps doing the same for every element so that all elements are positive and the max value will always be ``stack_len - 1``. Here's an example:
 ```
-./push_swap 5 -4 4 -5 2
+❯ ./push_swap 5 -4 4 -5 2
 
 Original Stack
 
