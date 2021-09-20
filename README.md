@@ -13,14 +13,14 @@
 * [Summary](#summary)
 
 ## Introduction
-This project is all about sorting algorithms, but with a twist. We are given two stacks (``a`` and ``b``) and we must do some transformation so that all the numbers are sorted in a such that the top element is the smallest. We must compile an executable ``push_swap`` which will receive as an argument either several integer arguments or one large argument with the different numbers in quotes.
+This project is all about sorting algorithms, but with a twist. We are given two stacks (``a`` and ``b``) and we must do some transformations on them so that all the numbers are sorted in ``a`` such that the top element is the smallest. We must compile an executable ``push_swap`` which will receive as an argument either several integer arguments or one large argument with the different numbers in quotes.
 
 Here are all the possible rotations we can do to help sort our stacks:
 
 | Rotation | Description |
 | :------: | :---------: |
-| ``sa`` | Swap the first two elements in stack ``a`` |
-| ``sb`` | Swap the first two elements in stack ``b`` |
+| ``sa`` | Swaps the first two elements in stack ``a`` |
+| ``sb`` | Swaps the first two elements in stack ``b`` |
 | ``ss`` | Performs ``sa`` and ``sb`` simultaneously |
 | ``ra`` | Rotates all elements upwards so that the first element of ``a`` goes to the bottom of the stack |
 | ``rb`` | Rotates all elements upwards so that the first element of ``b`` goes to the bottom of the stack |
@@ -39,6 +39,7 @@ If any of these checks fail, the program must end with ``Error\n``.
 Here's an example input:
 ```
 ./push_swap 3 4 1 2 6
+(or ./push_swap "3 4 1 2 6")
 
 The stack should look like this:
 
@@ -51,9 +52,15 @@ The stack should look like this:
 a		b
 
 ```
-And here's an incorrect input:
+And here are some incorrect inputs:
 ```shell
 ./push_swap 3 4 1 2 3
+Error
+
+./push_swap 3 4 1 2 six
+Error
+
+./push_swap 3 4 1 2 2147483648
 Error
 ```
 
@@ -66,7 +73,7 @@ rra
 
 ## Stack Implementation
 
-There are several ways to store and sort the list of numbers. Some worked on simple arrays of ints, with the caveat of having no apparent end to the array. Others re-made the linked list implementation from our [libft](https://github.com/madebypixel02/libft) project, but changing the content from ``void *`` to just an ``int``. I however used the original linked list from ``libft`` as I was quite interested in learning how useful void pointers could be, acting pretty much as a wild card to any variable type.
+There are several ways to store and sort the list of numbers. Some worked on simple arrays of ints, with the caveat of having no apparent end to the array. Others re-made the linked list implementation from our [libft](https://github.com/madebypixel02/libft) project, but changing the content from ``void *`` to just an ``int``. I however used the original linked list from ``libft`` as I was quite interested in learning how useful void pointers could be, acting as a wild card to any variable type.
 
 Of course working with that implementation caused some problems with memory, especially early on. One of the things to keep in mind with the ``void *`` approach at this is that you need to allocate enough memory for every int, and later on free it all. After a few headaches and various segmentation faults I managed to implement various stack-related functions which I thought would be useful later:
 
@@ -90,7 +97,7 @@ Of course working with that implementation caused some problems with memory, esp
 | ``st_replace_at`` | Changes content at the given index with the given new content |
 
 ## The Sorting Algorithm
-When debating the optimal algorithm to sort the elements in a, the idea of splitting into chunks kept popping up. However, I wanted to do something that appealed to me more. I ended up using radix sort, as it's quite simple to code and does a pretty decent job with two stacks. Also this method relies heavily on bitwise operators, so it was a great chance for me to figure out what bitwise is all about :)
+When debating the optimal algorithm to sort the elements in ``a``, the idea of splitting into chunks kept coming up. However, I wanted to do something that appealed to me more. I ended up diving into radix sort, as it's quite simple to code and does a pretty decent job with two stacks. Also this method relies heavily on bitwise operators, so it was a great chance for me to figure out what bitwise is all about :)
 
 ### Bitwise Operators
 
@@ -105,7 +112,7 @@ The ``&`` operator compares similarly to ``&&``, and will return 1 if both eleme
 0 & 0 = 0
 ```
 
-The ``>>`` operator right-shifts the number to the left a certain number of bytes, but never modifies any value:
+The ``>>`` operator right-shifts the number to the left a certain number of bytes:
 
 ```
 1010 >> 0 = 1010
@@ -119,10 +126,9 @@ The ``>>`` operator right-shifts the number to the left a certain number of byte
 
 * General Idea
 
-The idea with this algorithm, is we take the multiples of two and pass them to b, and rotate the others. Then we bring those elements from b back to a. Then we  
-right-shift the number one position and again pass the shifted multiples of two to b, and then back to a. Eventually, right-shifting a number too far will leave the number at zero. This way we determine the end of the algorithm. Once here we return any remaining elements from stack b back to a and *voila*! All the numbers will be sorted.
+The idea with this algorithm is we take the multiples of two from ``a`` and pass them to ``b``, and rotate the others. Then we bring those elements from ``b`` back to ``a``. Then we right-shift the number one position and again pass the shifted multiples of two from ``a`` to ``b``, and then back to ``a``. Eventually, right-shifting a number too far will leave the number at zero. This way we determine the end of the algorithm. From here we return any remaining elements from stack ``b`` back to ``a`` and *voila*! All the numbers will be sorted.
 
-* Shifting and bitwise operators
+* Making stack all positive for radix sort
 
 To work with this algorithm, we must make all of our numbers positive. For this I have a function that takes the minimum element and changes it to zero. Then it takes the next smallest and makes it 1. Then keeps doing the same for every element so that all elements are positive and the max value will always be ``stack_len - 1``. Here's an example:
 ```
@@ -153,13 +159,12 @@ The length of the stack is 5, so 5 - 1 = 4 is the maximum value of our translate
 
 * Radix sort in our stacks
 
-Here is a short demonstration of how the code will work with the stack to sort it :
+Here is a short demonstration of how the code will work with both stacks to sort the numbers:
 
 Note: some parts are printed in binary for better visualization.
 
-Command:
 ```
-./push_swap 7 5 0 -7 1 -5 -1
+Command: ./push_swap 7 5 0 -7 1 -5 -1
 ```
 
 1. Take an input stack and convert it as before so that all numbers are positive.
@@ -276,7 +281,7 @@ a		b
 a		b
 ```
 
-Output:
+Output
 ```
 ❯ ./push_swap 7 5 0 -7 1 -5 -1
 pb
@@ -327,3 +332,43 @@ As I said before, this algorithm isn't the fastest one, yet it does a pretty goo
 | 500 | 6784 |
 
 Note: These numbers were obtained using [push_swap_tester](https://github.com/lmalki-h/push_swap_tester)
+
+## Optimization
+
+This algorithm is pretty straightforward, and there are only a handful of ways to optimize it. First of all, I made a special case for sorting 7 numbers or less, which uses a more efficient algorithm than radix-sort, sorting three numbers in less than 2 steps. To *actually* optimize radix, sort, I tried a few things:
+
+* Don't push the bottom elements from a to b if they're already in place
+* Don't push the botttom elements from b to a if they're already in place
+* Check if the stack is already sorted before pushing to b
+* TBA
+
+## Installation
+
+* Cloning the repositories
+
+```shell
+git clone https://github.com/madebypixel02/push_swap.git
+cd push_swap
+git clone https://github.com/madebypixel02/libft.git
+```
+
+* Testing the function
+
+As with previous projects, this one includes a Makefile which compiles the sources into the ``push_swap`` executable. Here are the basic make rules you can use:
+
+```
+make                         Compiles the entire project
+make norminette              Passes Norminette to all files that need to pass Norminette
+make test N={No_of_elems}    Randomly chooses N elements from -N to N and passes it to the executable,
+                             then returns the number of moves and the result of the checker
+```
+
+* Example
+
+![make test Example](https://user-images.githubusercontent.com/40824677/134048840-1360d954-cfb4-44e9-b850-299814eda2ee.png)
+
+## Summary
+
+This project was filled with new concepts for me (void pointers, bitwise operators, sorting algorithms, ...), so it was a rollercoaster of emotions. Still, even though it isn't the most optimal sorting algorithm, I believe I learned a lot making it!
+
+September 20th, 2021
