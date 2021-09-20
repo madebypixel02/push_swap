@@ -359,7 +359,7 @@ As with previous projects, this one includes a Makefile which compiles the sourc
 ```
 make                         Compiles the entire project
 make norminette              Passes Norminette to all files that need to pass Norminette
-make test N={No_of_elems}    Randomly chooses N elements from -N to N and passes it to the executable,
+make test N={No_of_elems}    Randomly chooses N elements from -N to N and passes it to push_swap,
                              then returns the number of moves and the result of the checker
 ```
 
