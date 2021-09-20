@@ -6,6 +6,7 @@
 * [Stack Implementation](#stack-implementation)
 * [The Sorting Algorithm](#the-sorting-algorithm)
 * [Optimization](#optimization)
+* [Performance](#performance)
 * [Installation](#installation)
 * [Summary](#summary)
 
@@ -90,4 +91,221 @@ Of course working with that implementation caused some problems with memory, esp
 When debating the optimal algorithm to sort the elements in a, the idea of splitting into chunks kept popping up. However, I wanted to do something that appealed to me more. I ended up using radix sort, as it's quite simple to code and does a pretty decent job with two stacks. Also this method relies heavily on bitwise operators, so it was a great chance for me to figure out what bitwise is all about :)
 
 ### How radix sort works
-The idea with this algorithm, is we 
+
+* General Idea
+
+The idea with this algorithm, is we take the multiples of two and pass them to b, and rotate the others. Then we bring those elements from b back to a. Then we  
+right-shift the number one position and again pass the shifted multiples of two to b, and then back to a. Eventually, right-shifting a number too far will leave the number at zero. This way we determine the end of the algorithm. Once here we return any remaining elements from stack b back to a and *voila*! All the numbers will be sorted.
+
+* Shifting and bitwise operators
+
+To work with this algorithm, we must make all of our numbers positive. For this I have a function that takes the minimum element and changes it to zero. Then it takes the next smallest and makes it 1. Then keeps doing the same for every element so that all elements are positive and the max value will always be ``stack_len - 1``. Here's an example:
+```
+./push_swap 5 -4 4 -5 2
+
+Original Stack
+
+5		.		
+-4		.		
+4		.		
+-5		.		
+2		.		
+----------	----------
+a		b
+
+Stack after making all positive
+
+4		.		
+1		.		
+3		.		
+0		.		
+2		.		
+----------	----------
+a		b
+
+The length of the stack is 5, so 5 - 1 = 4 is the maximum value of our translated stack
+```
+
+The two bitwise operators we'll use are ``>>`` and ``&``.
+
+The ``&`` operator compares similarly to ``&&``, and will return 1 if both elements in the comparison are 1:
+
+```
+1 & 1 = 1
+0 & 1 = 0
+1 & 0 = 0
+0 & 0 = 0
+```
+
+The ``>>`` operator right-shifts the number to the left a certain number of bytes, but never modifies any value:
+
+```
+1010 >> 0 = 1010
+1010 >> 1 = 101
+1010 >> 2 = 10
+1010 >> 3 = 1
+1010 >> 4 = 0
+```
+
+* Radix sort in our stacks
+
+Here is a short demonstration of how the code will work with the stack to sort it :
+
+Note: some parts are printed in binary for better visualization.
+
+Command:
+```
+./push_swap 7 5 0 -7 1 -5 -1
+```
+
+1. Take an input stack and convert it as before so that all numbers are positive.
+```
+Original
+
+7		.		
+5		.		
+0		.		
+-7		.		
+1		.		
+-5		.		
+-1		.		
+----------	----------
+a		b
+
+Translated
+
+6		.		
+5		.		
+3		.		
+0		.		
+4		.		
+1		.		
+2		.		
+----------	----------
+a		b
+
+Binary
+
+110		.		
+101		.		
+011		.		
+000		.		
+100		.		
+001		.		
+010		.		
+----------	----------
+a		b
+```
+2. Check which elements have a zero in the last bit and pass them to stack b, and rotate the rest.
+```
+101		010		
+011		100		
+001		000		
+.		110		
+----------	----------
+a		b
+```
+3. Push elements from b back to a.
+```
+110		.		
+000		.		
+100		.		
+010		.		
+101		.		
+011		.		
+001		.		
+----------	----------
+a		b
+```
+4. Check which elements have a zero in the second bit from the right and pass them to stack b, and rotate the rest.
+```
+110		001		
+010		101		
+011		100		
+.		000		
+----------	----------
+a		b
+```
+5. Push elements from b back to a.
+```
+000		.		
+100		.		
+101		.		
+001		.		
+110		.		
+010		.		
+011		.		
+----------	----------
+a		b
+```
+6. Check which elements have a zero in the third bit from the right and pass them to stack b, and rotate the rest.
+```
+100		011		
+101		010		
+110		001		
+.		000		
+----------	----------
+a		b
+```
+7. Push elements from b back to a.
+```
+000		.		
+001		.		
+010		.		
+011		.		
+100		.		
+101		.		
+110		.		
+----------	----------
+a		b
+```
+8. Stack is sorted!
+```
+0		.		
+1		.		
+2		.		
+3		.		
+4		.		
+5		.		
+6		.		
+----------	----------
+a		b
+```
+
+Output:
+```
+❯ ./push_swap 7 5 0 -7 1 -5 -1
+pb
+ra
+ra
+pb
+pb
+ra
+pb
+pa
+pa
+pa
+pa
+ra
+pb
+pb
+ra
+pb
+ra
+pb
+pa
+pa
+pa
+pa
+pb
+ra
+ra
+pb
+ra
+pb
+pb
+pa
+pa
+pa
+pa
+```
