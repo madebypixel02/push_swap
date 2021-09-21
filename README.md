@@ -339,8 +339,8 @@ As I said before, this algorithm isn't the fastest one, yet it does a pretty goo
 | 3 | 1 |
 | 5 | 4 |
 | 10 | 64 |
-| 100 | 1083 |
-| 500 | 6784 |
+| 100 | 1082 |
+| 500 | 6781 |
 
 Note: These numbers were obtained using [push_swap_tester](https://github.com/lmalki-h/push_swap_tester)
 
