@@ -6,11 +6,12 @@
 /*   By: aperez-b <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 11:12:19 by aperez-b          #+#    #+#             */
-/*   Updated: 2021/09/17 17:31:52 by aperez-b         ###   ########.fr       */
+/*   Updated: 2021/09/21 12:41:59 by aperez-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lib/push_swap.h"
+#include <stdio.h>
 
 t_list	*st_printstack(t_list *stack, char *base, int max_value)
 {
@@ -39,18 +40,24 @@ t_list	*st_printstack(t_list *stack, char *base, int max_value)
 
 int	st_printstack_ab(t_list *a, t_list *b, char *base)
 {
-	int	max_value;
+	t_list	*max_a;
+	t_list	*max_b;
 
 	if (!a && !b)
 		return (ft_putstr_fd("Error\n", 2));
-	max_value = ft_lstsize(a) - 1;
-	if (ft_lstsize(b) - 1 > max_value)
-		max_value = ft_lstsize(b) - 1;
 	write(1, "\n", 1);
+	max_a = st_max(a);
+	max_b = st_max(b);
 	while (a || b)
 	{
-		a = st_printstack(a, base, max_value);
-		b = st_printstack(b, base, max_value);
+		if (max_a)
+			a = st_printstack(a, base, *(int *)max_a->content);
+		else
+			a = st_printstack(a, base, 0);
+		if (max_b)
+			b = st_printstack(b, base, *(int *)max_b->content);
+		else
+			b = st_printstack(b, base, 0);
 		ft_putchar_fd('\n', 1);
 	}
 	ft_putnchar_fd('-', 1, 10);
