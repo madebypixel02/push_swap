@@ -6,7 +6,7 @@
 #    By: aperez-b <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/29 10:50:06 by aperez-b          #+#    #+#              #
-#    Updated: 2021/09/20 20:09:20 by aperez-b         ###   ########.fr        #
+#    Updated: 2021/09/21 12:01:30 by aperez-b         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -95,7 +95,7 @@ test: all
 		$(LEAKS)./$(NAME) $(ARGS) > .out.tmp; \
 		cat .out.tmp; \
 		printf "\nMoves: "; \
-	   	cat .out.tmp | wc -l; \
+	   	cat .out.tmp | wc -l | tr -d " "; \
 		printf "Checker: "; \
 	   	cat .out.tmp | ./$(CHECKER) $(ARGS); \
 		$(RM) .out.tmp; \
