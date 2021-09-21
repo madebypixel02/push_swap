@@ -6,7 +6,7 @@
 /*   By: aperez-b <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 10:45:14 by aperez-b          #+#    #+#             */
-/*   Updated: 2021/09/19 17:04:10 by aperez-b         ###   ########.fr       */
+/*   Updated: 2021/09/21 23:09:55 by aperez-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,8 @@ static t_list	*st_parse(int argc, char **argv)
 
 	a = NULL;
 	i = 0;
-	if (argc < 2)
-	{
-		ft_putstr_fd("Error\n", 1);
+	if (argc < 3)
 		return (NULL);
-	}
 	while (++i < argc)
 	{
 		if (st_check_value(argv[i], &a) == -1)
