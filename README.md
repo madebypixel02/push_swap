@@ -337,10 +337,10 @@ As I said before, this algorithm isn't the fastest one, yet it does a pretty goo
 | Stack Size | Average Instructions to Sort |
 | :--------: | :--------------------------: |
 | 3 | 1 |
-| 5 | 4 |
-| 10 | 64 |
-| 100 | 1082 |
-| 500 | 6781 |
+| 5 | 7 |
+| 10 | 48 |
+| 100 | 1025 |
+| 500 | 6756 |
 
 Note: These numbers were obtained using [push_swap_tester](https://github.com/lmalki-h/push_swap_tester)
 
