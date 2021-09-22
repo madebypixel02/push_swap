@@ -6,7 +6,7 @@
 /*   By: aperez-b <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 10:50:03 by aperez-b          #+#    #+#             */
-/*   Updated: 2021/09/21 13:08:36 by aperez-b         ###   ########.fr       */
+/*   Updated: 2021/09/22 21:55:33 by aperez-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int	st_radix_sort(t_list **a, t_list **b, int max_len, int right_shift)
 	i = -1;
 	len = ft_lstsize(*a);
 	limit = st_get_ordered(*a, *b, 'a');
-	while (++i < len - limit)
+	while (++i < len - limit && !st_is_ordered(*a))
 	{
 		if (!(*(int *)(*a)->content >> right_shift & 1))
 			st_push_ab(b, a, 'b');
