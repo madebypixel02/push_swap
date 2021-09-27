@@ -6,11 +6,11 @@
 /*   By: aperez-b <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 10:45:14 by aperez-b          #+#    #+#             */
-/*   Updated: 2021/09/21 23:09:55 by aperez-b         ###   ########.fr       */
+/*   Updated: 2021/09/27 20:22:58 by aperez-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/push_swap.h"
+#include "../inc/push_swap.h"
 #include <stdio.h>
 
 static int	st_check_value(char *argv, t_list **a)

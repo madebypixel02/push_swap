@@ -6,11 +6,11 @@
 /*   By: aperez-b <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 10:50:03 by aperez-b          #+#    #+#             */
-/*   Updated: 2021/09/22 21:55:33 by aperez-b         ###   ########.fr       */
+/*   Updated: 2021/09/27 20:23:11 by aperez-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/push_swap.h"
+#include "../inc/push_swap.h"
 #include <stdio.h>
 
 int	st_order(t_list **a, t_list **b)

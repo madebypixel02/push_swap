@@ -6,11 +6,11 @@
 /*   By: aperez-b <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 11:12:19 by aperez-b          #+#    #+#             */
-/*   Updated: 2021/09/21 12:41:59 by aperez-b         ###   ########.fr       */
+/*   Updated: 2021/09/27 20:23:33 by aperez-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/push_swap.h"
+#include "../inc/push_swap.h"
 #include <stdio.h>
 
 t_list	*st_printstack(t_list *stack, char *base, int max_value)

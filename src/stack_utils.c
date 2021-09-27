@@ -6,11 +6,11 @@
 /*   By: aperez-b <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 16:26:30 by aperez-b          #+#    #+#             */
-/*   Updated: 2021/09/14 15:32:36 by aperez-b         ###   ########.fr       */
+/*   Updated: 2021/09/27 20:22:31 by aperez-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/stack.h"
+#include "../inc/stack.h"
 #include <stddef.h>
 
 int	st_find(t_list *stack, void *content, size_t size)

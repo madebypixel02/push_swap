@@ -6,7 +6,7 @@
 /*   By: aperez-b <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 09:58:49 by aperez-b          #+#    #+#             */
-/*   Updated: 2021/09/19 14:47:39 by aperez-b         ###   ########.fr       */
+/*   Updated: 2021/09/27 20:21:56 by aperez-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 # define STACK_H
 
-# include "../libft/lib/libft.h"
+# include "../libft/inc/libft.h"
 
 /* Deletes element at the top of the stack and returns it */
 void	*st_pop(t_list **stack);

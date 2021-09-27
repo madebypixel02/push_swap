@@ -6,11 +6,11 @@
 /*   By: aperez-b <aperez-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/08 20:37:34 by aperez-b          #+#    #+#             */
-/*   Updated: 2021/09/19 16:58:48 by aperez-b         ###   ########.fr       */
+/*   Updated: 2021/09/27 20:23:22 by aperez-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/push_swap.h"
+#include "../inc/push_swap.h"
 #include <stddef.h>
 
 int	st_is_ordered(t_list *stack)

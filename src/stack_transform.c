@@ -6,11 +6,11 @@
 /*   By: aperez-b <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 16:30:04 by aperez-b          #+#    #+#             */
-/*   Updated: 2021/09/19 14:24:24 by aperez-b         ###   ########.fr       */
+/*   Updated: 2021/09/27 20:22:40 by aperez-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/stack.h"
+#include "../inc/stack.h"
 
 int	st_swap_ab(t_list **stack, char c)
 {

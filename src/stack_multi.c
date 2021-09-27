@@ -6,11 +6,11 @@
 /*   By: aperez-b <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 19:51:14 by aperez-b          #+#    #+#             */
-/*   Updated: 2021/09/19 12:36:44 by aperez-b         ###   ########.fr       */
+/*   Updated: 2021/09/27 20:22:23 by aperez-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/stack.h"
+#include "../inc/stack.h"
 
 int	st_swap_ss(t_list **a, t_list **b)
 {

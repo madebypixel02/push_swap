@@ -6,11 +6,11 @@
 /*   By: aperez-b <aperez-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/05 22:43:00 by aperez-b          #+#    #+#             */
-/*   Updated: 2021/09/05 22:43:02 by aperez-b         ###   ########.fr       */
+/*   Updated: 2021/09/27 20:21:33 by aperez-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/stack.h"
+#include "../inc/stack.h"
 
 void	*st_pop(t_list **stack)
 {

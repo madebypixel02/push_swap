@@ -8,6 +8,7 @@ pft/
 gnlTester/
 a.out
 *.o
+*.d
 *.so
 *.a
 .DS_Store
@@ -19,3 +20,6 @@ push_swap
 vgcore*
 push_swap_tester
 checker
+bin/
+obj/
+objb/
