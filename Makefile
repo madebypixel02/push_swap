@@ -6,7 +6,7 @@
 #    By: aperez-b <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/29 10:50:06 by aperez-b          #+#    #+#              #
-#    Updated: 2021/09/27 20:25:24 by aperez-b         ###   ########.fr        #
+#    Updated: 2021/09/28 13:53:14 by aperez-b         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -102,7 +102,7 @@ create_dirs:
 	@mkdir -p $(BIN_DIR)
 
 clean:
-	@$(ECHO) "$(BLUE)Cleaning up object files in $(NAME)...$(DEFAULT)"
+	@$(ECHO) "$(CYAN)Cleaning up object files in $(NAME)...$(DEFAULT)"
 	@make clean -C libft
 	@$(RM) -r $(OBJ_DIR)
 	@$(RM) -r $(OBJB_DIR)
