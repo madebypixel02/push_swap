@@ -6,7 +6,7 @@
 #    By: aperez-b <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/29 10:50:06 by aperez-b          #+#    #+#              #
-#    Updated: 2021/09/28 13:53:14 by aperez-b         ###   ########.fr        #
+#    Updated: 2021/11/30 15:59:47 by aperez-b         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,9 +39,7 @@ CFLAGS = -Wall -Wextra -Werror
 RM = rm -f
 CC = gcc -MD
 SRC_DIR = src
-SRCB_DIR = srcb
 OBJ_DIR = obj
-OBJB_DIR = objb
 BIN_DIR = bin
 BIN = push_swap
 NAME = $(BIN_DIR)/$(BIN)
@@ -79,6 +77,9 @@ bonus: all
 	@$(ECHO) "$(MAGENTA)Bonus Compilation Complete in $(BIN)!$(DEFAULT)"
 
 compile_libft:
+	@if [ ! -d "libft" ]; then \
+		git clone https://github.com/madebypixel02/libft.git; \
+	fi
 	@make all -C libft/
 
 test: all
@@ -98,25 +99,31 @@ test: all
 
 create_dirs:
 	@mkdir -p $(OBJ_DIR)
-	@mkdir -p $(OBJB_DIR)
 	@mkdir -p $(BIN_DIR)
 
 clean:
 	@$(ECHO) "$(CYAN)Cleaning up object files in $(NAME)...$(DEFAULT)"
-	@make clean -C libft
+	@if [ -d "libft" ]; then \
+		make clean -C libft; \
+	fi
 	@$(RM) -r $(OBJ_DIR)
-	@$(RM) -r $(OBJB_DIR)
 
 fclean: clean
 	@$(RM) -r $(BIN_DIR)
-	@$(RM) $(LIBFT)
+	@if [ -d "libft" ]; then \
+		$(RM) $(LIBFT); \
+	fi
 	@$(ECHO) "$(CYAN)Removed $(NAME)$(DEFAULT)"
-	@$(ECHO) "$(CYAN)Removed $(LIBFT)$(DEFAULT)"
+	@if [ -d "libft" ]; then \
+		$(ECHO) "$(CYAN)Removed $(LIBFT)$(DEFAULT)"; \
+	fi
 
 norminette:
 	@$(ECHO) "$(CYAN)\nChecking norm for $(BIN)...$(DEFAULT)"
-	@norminette -R CheckForbiddenSourceHeader $(SRC_DIR) $(SRCB_DIR) inc/
-	@make norminette -C libft/
+	@norminette -R CheckForbiddenSourceHeader $(SRC_DIR) inc/
+	@if [ -d "libft" ]; then \
+		make norminette -C libft/; \
+	fi
 
 re: fclean all
 	@$(ECHO) "$(YELLOW)Cleaned and Rebuilt Everything for $(NAME)!$(DEFAULT)"

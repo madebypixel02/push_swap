@@ -351,7 +351,7 @@ Note: These numbers were obtained using [push_swap_tester](https://github.com/lm
 ```shell
 git clone https://github.com/madebypixel02/push_swap.git
 cd push_swap
-git clone https://github.com/madebypixel02/libft.git
+make
 ```
 
 * Testing the function
