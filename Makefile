@@ -6,7 +6,7 @@
 #    By: aperez-b <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/29 10:50:06 by aperez-b          #+#    #+#              #
-#    Updated: 2021/12/15 15:20:17 by aperez-b         ###   ########.fr        #
+#    Updated: 2021/12/15 18:34:25 by aperez-b         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,12 +25,10 @@ SHELL=/bin/bash
 UNAME = $(shell uname -s)
 
 # Properties for MacOS
-ECHO = echo
 CDEBUG = #-g3 -fsanitize=address
 CHECKER = tests/checker_Mac
 ifeq ($(UNAME), Linux)
 	#Properties for Linux
-	ECHO = echo -e
 	LEAKS = valgrind --leak-check=full --show-leak-kinds=all -s -q 
 	CHECKER = tests/checker_linux
 endif
@@ -44,6 +42,7 @@ OBJ_DIR = obj
 BIN_DIR = bin
 BIN = push_swap
 NAME = $(BIN_DIR)/$(BIN)
+PRINTF = LC_NUMERIC="en_US.UTF-8" printf
 LIBFT = libft/bin/libft.a
 
 
@@ -64,18 +63,20 @@ ifeq ($(N_VALID), True)
 	ARGS := $(shell seq -$(N) $(N) | sort -R | head -n $(N) | tr '\n' ' ')
 endif
 
+# Progress vars
+SRC_COUNT_TOT := $(shell expr $(shell echo -n $(SRC) | wc -w) - $(shell ls -l $(OBJ_DIR) 2>&1 | grep ".o" | wc -l) + 1)
+SRC_COUNT := 0
+SRC_PCT = $(shell expr 100 \* $(SRC_COUNT) / $(SRC_COUNT_TOT))
+
 all: $(NAME)
 
 $(NAME): create_dirs compile_libft $(OBJ)
 	@$(CC) $(CFLAGS) $(CDEBUG) $(OBJ) $(LIBFT) -o $@
-	@$(ECHO) "$(GREEN)$(BIN) is up to date!$(DEFAULT)"
+	@$(PRINTF) "\r%100s\r$(GREEN)$(BIN) is up to date!$(DEFAULT)\n"
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-	@$(ECHO) "Compiling $(BLUE)$<$(DEFAULT)..."
+	@$(PRINTF) "\r%100s\r[ %d/%d (%d%%) ] Compiling $(BLUE)$<$(DEFAULT)..." "" $(SRC_COUNT) $(SRC_COUNT_TOT) $(SRC_PCT)
 	@$(CC) $(CFLAGS) $(CDEBUG) -c $< -o $@
-
-bonus: all
-	@$(ECHO) "$(MAGENTA)Bonus Compilation Complete in $(BIN)!$(DEFAULT)"
 
 compile_libft:
 	@if [ ! -d "libft" ]; then \
@@ -85,10 +86,10 @@ compile_libft:
 
 test: all
 	@if [ $(N) -le 0 ]; then \
-		$(ECHO) "Error"; \
+		$(PRINTF) "Error\n"; \
 	else \
-		$(ECHO) "$(YELLOW)Performing test with custom parameters...$(DEFAULT)\n"; \
-		$(ECHO) "Command: $(GRAY)$(LEAKS)./$(NAME) $(ARGS)$(DEFAULT)\n"; \
+		$(PRINTF) "$(YELLOW)Performing test with custom parameters...$(DEFAULT)\n\n"; \
+		$(PRINTF) "Command: $(GRAY)$(LEAKS)./$(NAME) $(ARGS)$(DEFAULT)\n\n"; \
 		$(LEAKS)./$(NAME) $(ARGS) > .out.tmp; \
 		cat .out.tmp; \
 		printf "\nMoves: "; \
@@ -103,7 +104,7 @@ create_dirs:
 	@mkdir -p $(BIN_DIR)
 
 clean:
-	@$(ECHO) "$(CYAN)Cleaning up object files in $(NAME)...$(DEFAULT)"
+	@$(PRINTF) "$(CYAN)Cleaning up object files in $(NAME)...$(DEFAULT)\n"
 	@if [ -d "libft" ]; then \
 		make clean -C libft; \
 	fi
@@ -114,20 +115,20 @@ fclean: clean
 	@if [ -d "libft" ]; then \
 		$(RM) $(LIBFT); \
 	fi
-	@$(ECHO) "$(CYAN)Removed $(NAME)$(DEFAULT)"
+	@$(PRINTF) "$(CYAN)Removed $(NAME)$(DEFAULT)\n"
 	@if [ -d "libft" ]; then \
-		$(ECHO) "$(CYAN)Removed $(LIBFT)$(DEFAULT)"; \
+		$(PRINTF) "$(CYAN)Removed $(LIBFT)$(DEFAULT)\n"; \
 	fi
 
 norminette:
-	@$(ECHO) "$(CYAN)\nChecking norm for $(BIN)...$(DEFAULT)"
+	@$(PRINTF) "$(CYAN)\nChecking norm for $(BIN)...$(DEFAULT)\n"
 	@norminette -R CheckForbiddenSourceHeader $(SRC_DIR) inc/
 	@if [ -d "libft" ]; then \
 		make norminette -C libft/; \
 	fi
 
-re: fclean all
-	@$(ECHO) "$(YELLOW)Cleaned and Rebuilt Everything for $(NAME)!$(DEFAULT)"
+re: fclean
+	@make all
 
 git:
 	git add .
@@ -137,4 +138,4 @@ git:
 -include $(OBJ_DIR)/*.d
 -include $(OBJB_DIR)/*.d
 
-.PHONY: all clean fclean bonus compile_libft norminette test git create_dirs re
+.PHONY: all clean fclean compile_libft norminette test git create_dirs re
