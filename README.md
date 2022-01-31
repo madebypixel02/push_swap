@@ -332,7 +332,6 @@ This algorithm is pretty straightforward, and there are only a handful of ways t
 * Don't push the bottom elements from a to b if they're already in place
 * Don't push the botttom elements from b to a if they're already in place
 * Check if the stack is already sorted before pushing to b
-* TBA
 
 ## Performance
 
