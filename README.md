@@ -377,3 +377,9 @@ make test N={No_of_elems}    Randomly chooses N elements from -N to N and passes
 This project was filled with new concepts for me (void pointers, bitwise operators, sorting algorithms, ...), so it was a rollercoaster of emotions. Still, even though it isn't the most optimal sorting algorithm, I believe I learned a lot making it!
 
 September 20th, 2021
+
+<p align="center">
+  <a href="https://github.com/madebypixel02/so_long">&#11013;</a>
+  <a href="https://github.com/madebypixel02/42-Madrid-Cursus">&#127968;</a>
+  <a href="https://github.com/madebypixel02/pipex">&#10145;</a>
+</p>
