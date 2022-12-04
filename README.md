@@ -2,9 +2,9 @@
 
 *Because swap_push isn’t as natural* 🌳
 
-<p align="center">
+<div align="center">
   <img src=https://user-images.githubusercontent.com/40824677/149229610-0bee07bf-1757-4fde-a261-0456f033c51e.png />
-</p>
+</div>
 
 ### Table Of Contents
 * [Introduction](#introduction)
