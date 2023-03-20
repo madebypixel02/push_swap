@@ -77,7 +77,7 @@ rra
 
 ## Stack Implementation
 
-There are several ways to store and sort the list of numbers. Some worked on simple arrays of ints, with the caveat of having no apparent end to the array. Others re-made the linked list implementation from our [libft](https://github.com/madebypixel02/libft) project, but changing the content from ``void *`` to just an ``int``. I however used the original linked list from ``libft`` as I was quite interested in learning how useful void pointers could be, acting as a wild card to any variable type.
+There are several ways to store and sort the list of numbers. Some worked on simple arrays of ints, with the caveat of having no apparent end to the array. Others re-made the linked list implementation from our [libft](https://gitlab.com/madebypixel02/libft) project, but changing the content from ``void *`` to just an ``int``. I however used the original linked list from ``libft`` as I was quite interested in learning how useful void pointers could be, acting as a wild card to any variable type.
 
 Of course working with that implementation caused some problems with memory, especially early on. One of the things to keep in mind with the ``void *`` approach at this is that you need to allocate enough memory for every int, and later on free it all. After a few headaches and various segmentation faults I managed to implement various stack-related functions which I thought would be useful later:
 
@@ -353,7 +353,7 @@ Note: These numbers were obtained using [push_swap_tester](https://github.com/lm
 * Cloning the repositories
 
 ```shell
-git clone https://github.com/madebypixel02/push_swap.git
+git clone https://gitlab.com/madebypixel02/push_swap.git
 cd push_swap
 make
 ```
