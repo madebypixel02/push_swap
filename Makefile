@@ -6,7 +6,7 @@
 #    By: aperez-b <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/29 10:50:06 by aperez-b          #+#    #+#              #
-#    Updated: 2023/04/05 16:39:41 by aperez-b         ###   ########.fr        #
+#    Updated: 2023/04/08 14:38:46 by aperez-b         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,16 +45,13 @@ BIN = push_swap
 NAME = $(BIN_DIR)/$(BIN)
 PRINTF = printf
 LIBFT = libft/bin/libft.a
-LIBFT_SRC = $(shell ls libft/src*/*.c)
+LIBFT_DIR = libft
+LIBFT_SRC = $(shell [ -d libft ] && ls libft/src*/*.c)
 
 SRC = stack.c stack_utils.c stack_transform.c stack_multi.c	\
 	  order.c order_utils.c stack_print.c main.c
 
-SRCB = 
-
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
-
-OBJB = $(addprefix $(OBJB_DIR)/, $(SRCB:.c=.o))
 
 # push_swap test variables
 N = 0
